@@ -10,50 +10,59 @@
   HOW TO EDIT THIS PAGE
   ============================================================
 
-  1. ONE-TIME SETUP: change the <base> line just below.
-     Replace YOUR-USERNAME and YOUR-REPO with your GitHub username and
-     repository name. Every chapter link on this page is relative to it, so
-     this is the only place the address appears.
+  CHANGE A TITLE: edit the text inside <span class="title">...</span>.
 
-     Example:  <base href="https://github.com/jsmith/cpp-book/blob/HEAD/">
+  ADD A CHAPTER: copy one whole <li>...</li> line in the list below,
+  paste it after the last chapter, then change the file name, the number
+  and the title. The file name must match the .md file in the repository.
 
-     The links open the chapters on github.com, where the markdown is
-     displayed nicely (code highlighting, tables, images).
+  REMOVE A CHAPTER: delete its <li>...</li> line.
 
-  2. CHANGE A TITLE: edit the text between <a ...> and </a>.
+  MARK A CHAPTER AS A DRAFT: add this right after its title:
+      <span class="tag">Draft</span>
 
-  3. ADD A CHAPTER: copy one whole <li>...</li> line in the list below,
-     paste it where you want it, then change the file name and the text.
-     The file name must match the .md file in your repository exactly.
+  CHANGE THE COLORS: edit the color codes on the first lines of the
+  <style> section: "navy" and "navy-deep" are the banner, and "accent" is
+  the orange bar and highlights.
 
-  4. REMOVE A CHAPTER: delete its <li>...</li> line.
+  USE YOUR OWN IMAGE INSTEAD OF THE ARTWORK:
+    1. Upload your image into the "images" folder of the repository
+       (for example images/cover.png).
+    2. Delete the whole <svg> ... </svg> block in the banner below and
+       put this in its place (the full address is required here):
+         <img class="hero-art" alt="Book cover"
+              src="https://def3qu.github.io/Concise-CPP-Book/images/cover.png">
 
-  5. CHANGE THE ABOUT TEXT OR FOOTER: edit the <p> text near the top
-     or the <footer> at the bottom.
+  CHANGE THE INTRO TEXT OR THE FOOTER: edit the <p class="lede"> text in
+  the banner or the <footer> at the bottom.
+
+  The <base> line below makes every chapter link open the rendered chapter
+  on github.com. Leave it as it is.
 -->
 <base href="https://github.com/def3qu/Concise-CPP-Book/blob/HEAD/">
 
 <style>
   :root {
+    --navy: #232d4b;
+    --navy-deep: #161d33;
+    --accent: #e57200;
     --bg: #ffffff;
     --text: #1f2328;
     --muted: #59636e;
-    --line: #d1d9e0;
-    --link: #0b5cad;
-    --hover: #f3f6f9;
-    --warn-bg: #fff4d6;
-    --warn-text: #5c4400;
+    --line: #d9dee3;
+    --link: #1b4f9c;
+    --hover: #f4f6f9;
+    --badge: #232d4b;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #14181d;
+      --bg: #12161c;
       --text: #e6e9ec;
       --muted: #9aa5b1;
-      --line: #2f3740;
-      --link: #6cb2ff;
-      --hover: #1c222a;
-      --warn-bg: #3b2f0a;
-      --warn-text: #ffe39a;
+      --line: #2b333c;
+      --link: #7db6ff;
+      --hover: #1a2029;
+      --badge: #34426b;
     }
   }
   * { box-sizing: border-box; }
@@ -64,27 +73,59 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     line-height: 1.55;
   }
-  main {
-    max-width: 44rem;
-    margin: 0 auto;
-    padding: 3rem 1.25rem 2rem;
+
+  /* ---------- banner ---------- */
+  .hero {
+    background: var(--navy);
+    background-image: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: #ffffff;
+    border-bottom: 8px solid var(--accent);
   }
-  h1 {
-    font-size: 2rem;
-    line-height: 1.2;
-    margin: 0 0 0.35rem;
+  .hero-inner {
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 3rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+  }
+  .hero-text { flex: 1 1 22rem; }
+  .hero h1 {
+    font-size: 2.3rem;
+    line-height: 1.15;
+    margin: 0 0 0.5rem;
+    color: #ffffff;
   }
   .byline {
-    color: var(--muted);
-    margin: 0 0 1.5rem;
-    font-size: 1.05rem;
+    margin: 0 0 1.25rem;
+    font-size: 1.1rem;
+    color: #c9d1e6;
+  }
+  .lede {
+    margin: 0;
+    max-width: 30rem;
+    color: #e4e9f5;
+  }
+  .hero-art {
+    flex: 0 1 21rem;
+    width: 21rem;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ---------- chapter list ---------- */
+  main {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 2rem;
   }
   h2 {
     font-size: 0.85rem;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--muted);
-    margin: 2.25rem 0 0.5rem;
+    margin: 0 0 0.75rem;
     font-weight: 600;
   }
   ul.toc {
@@ -93,32 +134,58 @@
     padding: 0;
     border-top: 1px solid var(--line);
   }
-  ul.toc li {
-    border-bottom: 1px solid var(--line);
-  }
+  ul.toc li { border-bottom: 1px solid var(--line); }
   ul.toc a {
     display: flex;
-    gap: 1rem;
-    align-items: baseline;
-    padding: 0.8rem 0.5rem;
+    align-items: center;
+    padding: 0.8rem 0.75rem;
+    border-left: 4px solid transparent;
     color: var(--text);
     text-decoration: none;
+  }
+  ul.toc a::after {
+    content: "\2192";
+    margin-left: auto;
+    color: var(--accent);
+    opacity: 0;
   }
   ul.toc a:hover,
   ul.toc a:focus-visible {
     background: var(--hover);
+    border-left-color: var(--accent);
     outline: none;
   }
-  ul.toc .num {
-    flex: 0 0 5.5rem;
-    color: var(--muted);
-    font-size: 0.9rem;
+  ul.toc a:hover::after,
+  ul.toc a:focus-visible::after { opacity: 1; }
+  .num {
+    margin-right: 1rem;
+    flex: 0 0 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: var(--badge);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.95rem;
   }
-  ul.toc .title {
-    color: var(--link);
-    font-weight: 500;
-  }
+  .title { color: var(--link); font-weight: 500; }
   ul.toc a:hover .title { text-decoration: underline; }
+  .tag {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.05rem 0.5rem;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+
   footer {
     margin-top: 3rem;
     padding-top: 1rem;
@@ -127,59 +194,105 @@
     font-size: 0.85rem;
   }
   footer a { color: var(--link); }
-  #setup-warning {
-    display: none;
-    background: var(--warn-bg);
-    color: var(--warn-text);
-    padding: 0.75rem 1rem;
-    border-radius: 6px;
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
-  }
-  @media (max-width: 30rem) {
-    h1 { font-size: 1.6rem; }
-    ul.toc a { flex-direction: column; gap: 0.1rem; }
-    ul.toc .num { flex-basis: auto; }
+
+  @media (max-width: 40rem) {
+    .hero-inner { flex-direction: column; align-items: flex-start; padding: 2rem 1.25rem; gap: 0; }
+    .hero h1 { font-size: 1.75rem; }
+    .hero-text { flex: 0 0 auto; }
+    .hero-art { width: 17rem; flex: 0 0 auto; margin-top: 1.5rem; }
   }
 </style>
 </head>
 
 <body>
-<main>
 
-  <!-- Shows only while the <base> line above still has the placeholder text. -->
-  <div id="setup-warning">
-    Setup needed: open <code>index.html</code> in a text editor and replace
-    <code>YOUR-USERNAME</code> and <code>YOUR-REPO</code> in the
-    <code>&lt;base&gt;</code> line near the top. This message disappears once you do.
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1>Concise Introduction to Programming with C++</h1>
+      <p class="byline">by David Frazier</p>
+      <!-- INTRO TEXT: replace or delete this paragraph -->
+      <p class="lede">
+        A free, concise introduction to programming in C++. Choose a chapter
+        below to start reading.
+      </p>
+    </div>
+
+    <!-- Decorative artwork. To use your own image instead, see the instructions at the top of this file. -->
+    <svg class="hero-art" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="2" y="2" width="396" height="296" rx="14" fill="#0e1224" stroke="#3a4670" stroke-width="2"/>
+      <g fill="none" stroke="#f3ead3" stroke-opacity="0.12" stroke-width="1.5"><circle cx="255" cy="125" r="118"/><circle cx="170" cy="210" r="86"/><circle cx="335" cy="80" r="74"/></g>
+      <g>
+          <circle cx="170" cy="210" r="68" fill="#8f2a48" fill-opacity="0.88"/>
+        <circle cx="170" cy="210" r="52" fill="#d94f6b" fill-opacity="0.88"/>
+        <circle cx="170" cy="210" r="34" fill="#f08aa0" fill-opacity="0.88"/>
+        <circle cx="170" cy="210" r="16" fill="#ffd5de" fill-opacity="0.88"/>
+          <circle cx="255" cy="125" r="92" fill="#e57200" fill-opacity="0.88"/>
+        <circle cx="255" cy="125" r="72" fill="#f08a24" fill-opacity="0.88"/>
+        <circle cx="255" cy="125" r="52" fill="#f6c744" fill-opacity="0.88"/>
+        <circle cx="255" cy="125" r="30" fill="#ffe9a8" fill-opacity="0.88"/>
+          <circle cx="335" cy="80" r="60" fill="#26357a" fill-opacity="0.88"/>
+        <circle cx="335" cy="80" r="46" fill="#3f6fd8" fill-opacity="0.88"/>
+        <circle cx="335" cy="80" r="30" fill="#86a8f0" fill-opacity="0.88"/>
+        <circle cx="335" cy="80" r="14" fill="#f3ead3" fill-opacity="0.88"/>
+          <circle cx="88" cy="78" r="34" fill="#1f7f78" fill-opacity="0.9"/>
+        <circle cx="88" cy="78" r="22" fill="#36b3a8" fill-opacity="0.9"/>
+        <circle cx="88" cy="78" r="10" fill="#b8efe9" fill-opacity="0.9"/>
+          <circle cx="352" cy="232" r="36" fill="#4b2f8a" fill-opacity="0.9"/>
+        <circle cx="352" cy="232" r="24" fill="#7a4fc7" fill-opacity="0.9"/>
+        <circle cx="352" cy="232" r="11" fill="#cdb8f5" fill-opacity="0.9"/>
+      </g>
+      <polygon points="295,248 358,294 262,296" fill="#f6c744" stroke="#0e1224" stroke-width="2"/>
+      <polygon points="30,30 135,78 24,104" fill="#3f6fd8" fill-opacity="0.85" stroke="#f3ead3" stroke-width="1.5"/>
+      <polygon points="196,16 238,72 168,74" fill="#0e1224" stroke="#f3ead3" stroke-width="2.5"/>
+      <polygon points="205,40 222,64 190,65" fill="#e57200"/>
+      <line x1="14" y1="268" x2="388" y2="34" stroke="#f3ead3" stroke-width="3" stroke-linecap="round"/>
+      <line x1="30" y1="290" x2="392" y2="62" stroke="#e57200" stroke-width="1.5" stroke-opacity="0.9"/>
+      <line x1="76.5" y1="218.2" x2="86.1" y2="233.5" stroke="#f3ead3" stroke-width="2" stroke-linecap="round"/>
+      <line x1="136.4" y1="180.8" x2="145.9" y2="196.1" stroke="#f3ead3" stroke-width="2" stroke-linecap="round"/>
+      <line x1="203.7" y1="138.7" x2="213.3" y2="154.0" stroke="#f3ead3" stroke-width="2" stroke-linecap="round"/>
+      <line x1="274.8" y1="94.2" x2="284.3" y2="109.5" stroke="#f3ead3" stroke-width="2" stroke-linecap="round"/>
+      <line x1="338.4" y1="54.4" x2="347.9" y2="69.7" stroke="#f3ead3" stroke-width="2" stroke-linecap="round"/>
+      <path d="M 6,252 C 36,214 68,290 102,252 S 168,214 204,252" fill="none" stroke="#e57200" stroke-width="3.5" stroke-linecap="round"/>
+      <g><rect x="24" y="150" width="12" height="12" fill="#e57200" fill-opacity="0.92"/><rect x="50" y="150" width="12" height="12" fill="#f3ead3" fill-opacity="0.92"/><rect x="76" y="150" width="12" height="12" fill="#f3ead3" fill-opacity="0.92"/><rect x="37" y="163" width="12" height="12" fill="#e57200" fill-opacity="0.92"/><rect x="63" y="163" width="12" height="12" fill="#f3ead3" fill-opacity="0.92"/><rect x="24" y="176" width="12" height="12" fill="#f3ead3" fill-opacity="0.92"/><rect x="50" y="176" width="12" height="12" fill="#e57200" fill-opacity="0.92"/><rect x="76" y="176" width="12" height="12" fill="#f3ead3" fill-opacity="0.92"/><rect x="37" y="189" width="12" height="12" fill="#f3ead3" fill-opacity="0.92"/><rect x="63" y="189" width="12" height="12" fill="#e57200" fill-opacity="0.92"/></g>
+      <path transform="translate(112,34)" d="M 14,0 C 2,0 2,10 2,20 L 2,40 C 2,50 -4,55 -12,55 C -4,55 2,60 2,70 L 2,90 C 2,100 2,110 14,110" fill="none" stroke="#f3ead3" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.9"/>
+      <path transform="translate(376,118) scale(-1,1)" d="M 14,0 C 2,0 2,10 2,20 L 2,40 C 2,50 -4,55 -12,55 C -4,55 2,60 2,70 L 2,90 C 2,100 2,110 14,110" fill="none" stroke="#f3ead3" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.9"/>
+      <circle cx="214" cy="244" r="5.5" fill="#f3ead3"/><circle cx="214" cy="262" r="5.5" fill="#f3ead3"/><path d="M 215,265 C 220,272 219,281 211,287" fill="none" stroke="#f3ead3" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 150,52 A 108 108 0 0 1 296,40" fill="none" stroke="#f3ead3" stroke-width="2" stroke-dasharray="3 6" stroke-linecap="round"/>
+      <polygon points="296,40 285,34 286,47" fill="#f3ead3"/>
+      <circle cx="64" cy="132" r="3" fill="#f6c744"/>
+      <circle cx="120" cy="214" r="2.5" fill="#f3ead3"/>
+      <circle cx="300" cy="175" r="3.5" fill="#f3ead3"/>
+      <circle cx="390" cy="185" r="3" fill="#e57200"/>
+      <circle cx="240" cy="20" r="2.5" fill="#f6c744"/>
+      <circle cx="372" cy="40" r="2.5" fill="#f3ead3"/>
+      <circle cx="20" cy="130" r="2.5" fill="#e57200"/>
+      <circle cx="325" cy="285" r="2.5" fill="#f3ead3"/>
+      <circle cx="120" cy="285" r="3" fill="#f6c744"/>
+      <g stroke="#f6c744" stroke-width="2.5" stroke-linecap="round"><line x1="146" y1="124" x2="158" y2="136"/><line x1="158" y1="124" x2="146" y2="136"/></g>
+      <g stroke="#f3ead3" stroke-width="2.5" stroke-linecap="round"><line x1="96" y1="178" x2="106" y2="188"/><line x1="106" y1="178" x2="96" y2="188"/></g>
+    </svg>
   </div>
+</header>
 
-  <h1>Concise Introduction to Programming with C++</h1>
-  <p class="byline">by David Frazier</p>
-
-  <!-- ABOUT TEXT: replace or delete this paragraph -->
-  <p>
-    A free, concise introduction to programming in C++. Choose a chapter
-    below to start reading.
-  </p>
-
+<main>
   <h2>Chapters</h2>
   <ul class="toc">
-    <li><a href="01-introduction-to-cpp.md"><span class="num">Chapter 1</span><span class="title">Introduction to C++</span></a></li>
-    <li><a href="02-variables-and-data-types.md"><span class="num">Chapter 2</span><span class="title">Variables and Data Types, Constants and Input/Output</span></a></li>
-    <li><a href="03-control-structures.md"><span class="num">Chapter 3</span><span class="title">Control Structures</span></a></li>
-    <li><a href="04-repetition.md"><span class="num">Chapter 4</span><span class="title">Repetition - Iterative Control Structures</span></a></li>
-    <li><a href="05-functions.md"><span class="num">Chapter 5</span><span class="title">Functions</span></a></li>
-    <li><a href="06-arrays.md"><span class="num">Chapter 6</span><span class="title">Arrays</span></a></li>
-    <li><a href="07-strings.md"><span class="num">Chapter 7</span><span class="title">Strings</span></a></li>
-    <li><a href="08-structs-and-classes.md"><span class="num">Chapter 8</span><span class="title">Structs and Classes</span></a></li>
-    <li><a href="09-inheritance.md"><span class="num">Chapter 9</span><span class="title">Inheritance</span></a></li>
-    <li><a href="10-pointers.md"><span class="num">Chapter 10</span><span class="title">Pointers</span></a></li>
+    <li><a href="01-introduction-to-cpp.md"><span class="num">1</span><span class="title">Introduction to C++</span></a></li>
+    <li><a href="02-variables-and-data-types.md"><span class="num">2</span><span class="title">Variables and Data Types, Constants and Input/Output</span></a></li>
+    <li><a href="03-control-structures.md"><span class="num">3</span><span class="title">Control Structures</span></a></li>
+    <li><a href="04-repetition.md"><span class="num">4</span><span class="title">Repetition - Iterative Control Structures</span></a></li>
+    <li><a href="05-functions.md"><span class="num">5</span><span class="title">Functions</span></a></li>
+    <li><a href="06-arrays.md"><span class="num">6</span><span class="title">Arrays</span></a></li>
+    <li><a href="07-strings.md"><span class="num">7</span><span class="title">Strings</span></a></li>
+    <li><a href="08-structs-and-classes.md"><span class="num">8</span><span class="title">Structs and Classes</span></a></li>
+    <li><a href="09-inheritance.md"><span class="num">9</span><span class="title">Inheritance</span></a></li>
+    <li><a href="10-pointers.md"><span class="num">10</span><span class="title">Pointers</span></a></li>
 
     <!-- TO ADD A CHAPTER: copy the example line below, paste it ABOVE this comment
-         (after the last chapter), and edit the file name and text.
+         (after the last chapter), and edit the file name, number and title.
 
-    <li><a href="11-using-files.md"><span class="num">Chapter 11</span><span class="title">Using Files</span></a></li>
+    <li><a href="11-using-files.md"><span class="num">11</span><span class="title">Using Files</span></a></li>
     -->
   </ul>
 
@@ -188,14 +301,7 @@
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
     Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)</a>.
   </footer>
-
 </main>
 
-<script>
-  // Show a reminder until the <base> line has been edited.
-  if (document.baseURI.indexOf("YOUR-USERNAME") !== -1) {
-    document.getElementById("setup-warning").style.display = "block";
-  }
-</script>
 </body>
 </html>
