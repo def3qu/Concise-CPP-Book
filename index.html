@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concise Introduction to Programming with C++</title>
+
+<!--
+  ============================================================
+  HOW TO EDIT THIS PAGE
+  ============================================================
+
+  1. ONE-TIME SETUP: change the <base> line just below.
+     Replace YOUR-USERNAME and YOUR-REPO with your GitHub username and
+     repository name. Every chapter link on this page is relative to it, so
+     this is the only place the address appears.
+
+     Example:  <base href="https://github.com/jsmith/cpp-book/blob/HEAD/">
+
+     The links open the chapters on github.com, where the markdown is
+     displayed nicely (code highlighting, tables, images).
+
+  2. CHANGE A TITLE: edit the text between <a ...> and </a>.
+
+  3. ADD A CHAPTER: copy one whole <li>...</li> line in the list below,
+     paste it where you want it, then change the file name and the text.
+     The file name must match the .md file in your repository exactly.
+
+  4. REMOVE A CHAPTER: delete its <li>...</li> line.
+
+  5. CHANGE THE ABOUT TEXT OR FOOTER: edit the <p> text near the top
+     or the <footer> at the bottom.
+-->
+<base href="https://github.com/YOUR-USERNAME/YOUR-REPO/blob/HEAD/">
+
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #1f2328;
+    --muted: #59636e;
+    --line: #d1d9e0;
+    --link: #0b5cad;
+    --hover: #f3f6f9;
+    --warn-bg: #fff4d6;
+    --warn-text: #5c4400;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14181d;
+      --text: #e6e9ec;
+      --muted: #9aa5b1;
+      --line: #2f3740;
+      --link: #6cb2ff;
+      --hover: #1c222a;
+      --warn-bg: #3b2f0a;
+      --warn-text: #ffe39a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  main {
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: 3rem 1.25rem 2rem;
+  }
+  h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    margin: 0 0 0.35rem;
+  }
+  .byline {
+    color: var(--muted);
+    margin: 0 0 1.5rem;
+    font-size: 1.05rem;
+  }
+  h2 {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 2.25rem 0 0.5rem;
+    font-weight: 600;
+  }
+  ul.toc {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  ul.toc li {
+    border-bottom: 1px solid var(--line);
+  }
+  ul.toc a {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.8rem 0.5rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+  ul.toc a:hover,
+  ul.toc a:focus-visible {
+    background: var(--hover);
+    outline: none;
+  }
+  ul.toc .num {
+    flex: 0 0 5.5rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  ul.toc .title {
+    color: var(--link);
+    font-weight: 500;
+  }
+  ul.toc a:hover .title { text-decoration: underline; }
+  footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--link); }
+  #setup-warning {
+    display: none;
+    background: var(--warn-bg);
+    color: var(--warn-text);
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+  @media (max-width: 30rem) {
+    h1 { font-size: 1.6rem; }
+    ul.toc a { flex-direction: column; gap: 0.1rem; }
+    ul.toc .num { flex-basis: auto; }
+  }
+</style>
+</head>
+
+<body>
+<main>
+
+  <!-- Shows only while the <base> line above still has the placeholder text. -->
+  <div id="setup-warning">
+    Setup needed: open <code>index.html</code> in a text editor and replace
+    <code>YOUR-USERNAME</code> and <code>YOUR-REPO</code> in the
+    <code>&lt;base&gt;</code> line near the top. This message disappears once you do.
+  </div>
+
+  <h1>Concise Introduction to Programming with C++</h1>
+  <p class="byline">by David Frazier</p>
+
+  <!-- ABOUT TEXT: replace or delete this paragraph -->
+  <p>
+    A free, concise introduction to programming in C++. Choose a chapter
+    below to start reading.
+  </p>
+
+  <h2>Chapters</h2>
+  <ul class="toc">
+    <li><a href="01-introduction-to-cpp.md"><span class="num">Chapter 1</span><span class="title">Introduction to C++</span></a></li>
+    <li><a href="02-variables-and-data-types.md"><span class="num">Chapter 2</span><span class="title">Variables and Data Types, Constants and Input/Output</span></a></li>
+    <li><a href="03-control-structures.md"><span class="num">Chapter 3</span><span class="title">Control Structures</span></a></li>
+    <li><a href="04-repetition.md"><span class="num">Chapter 4</span><span class="title">Repetition - Iterative Control Structures</span></a></li>
+    <li><a href="05-functions.md"><span class="num">Chapter 5</span><span class="title">Functions</span></a></li>
+    <li><a href="06-arrays.md"><span class="num">Chapter 6</span><span class="title">Arrays</span></a></li>
+    <li><a href="07-strings.md"><span class="num">Chapter 7</span><span class="title">Strings</span></a></li>
+    <li><a href="08-structs-and-classes.md"><span class="num">Chapter 8</span><span class="title">Structs and Classes</span></a></li>
+    <li><a href="09-inheritance.md"><span class="num">Chapter 9</span><span class="title">Inheritance</span></a></li>
+    <li><a href="10-pointers.md"><span class="num">Chapter 10</span><span class="title">Pointers</span></a></li>
+
+    <!-- TO ADD A CHAPTER: copy the example line below, paste it ABOVE this comment
+         (after the last chapter), and edit the file name and text.
+
+    <li><a href="11-using-files.md"><span class="num">Chapter 11</span><span class="title">Using Files</span></a></li>
+    -->
+  </ul>
+
+  <footer>
+    &copy; 2025 David Frazier. This work is licensed under a
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+    Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)</a>.
+  </footer>
+
+</main>
+
+<script>
+  // Show a reminder until the <base> line has been edited.
+  if (document.baseURI.indexOf("YOUR-USERNAME") !== -1) {
+    document.getElementById("setup-warning").style.display = "block";
+  }
+</script>
+</body>
+</html>
