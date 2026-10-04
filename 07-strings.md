@@ -1,3 +1,6 @@
+<!-- nav -->
+[Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 8 →](08-structs-and-classes.md)
+
 # Chapter 7 - Strings
 
 ## 7.1 Introduction to Strings
@@ -313,3 +316,7 @@ int main()
   return 0;
 }
 ```
+
+---
+
+[← Previous: Chapter 6](06-arrays.md) | [Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 8 →](08-structs-and-classes.md)

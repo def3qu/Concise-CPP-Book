@@ -1,3 +1,6 @@
+<!-- nav -->
+[Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 9 →](09-inheritance.md)
+
 # Chapter 8 - Structs and Classes
 
 ## 8.1 Introduction to Object-Oriented Programming (OOP)
@@ -450,3 +453,7 @@ This program gives the expected output:
 Point coordinates must be between -20 and 20
 Point coordinates must be between -20 and 20
 ```
+
+---
+
+[← Previous: Chapter 7](07-strings.md) | [Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 9 →](09-inheritance.md)

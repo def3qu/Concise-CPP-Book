@@ -1,3 +1,6 @@
+<!-- nav -->
+[Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 5 →](05-functions.md)
+
 # Chapter 4 - Repetition - Iterative Control Structures
 
 ## 4.1 Introduction to Iterative Control Structures
@@ -317,8 +320,10 @@ You can nest **for**, **while**, and **do-while** loops in any order. You can al
 
 ## 4.8 Common Pitfalls and Debugging Tips
 
-• Infinite loops: occur when there is no way to reach a terminal condition in a loop.
+- Infinite loops: occur when there is no way to reach a terminal condition in a loop.
+- Off-by-one errors in iteration.
+- Debugging techniques for loops: test loops with simple print statements before adding more complex code. If the loops are wrong, the program cannot be correct..
 
-• Off-by-one errors in iteration.
+---
 
-• Debugging techniques for loops: test loops with simple print statements before adding more complex code. If the loops are wrong, the program cannot be correct..
+[← Previous: Chapter 3](03-control-structures.md) | [Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 5 →](05-functions.md)

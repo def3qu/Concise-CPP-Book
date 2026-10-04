@@ -1,3 +1,6 @@
+<!-- nav -->
+[Table of contents](https://def3qu.github.io/Concise-CPP-Book/)
+
 # Chapter 10 - Pointers
 
 ## C++ and Memory
@@ -192,3 +195,7 @@ In the first pointer declaration, we are really saying "create a pointer to an i
 - FAQ: segmentation faults, runtime errors, etc.
 
 ---
+
+---
+
+[← Previous: Chapter 9](09-inheritance.md) | [Table of contents](https://def3qu.github.io/Concise-CPP-Book/)

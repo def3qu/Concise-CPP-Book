@@ -1,3 +1,6 @@
+<!-- nav -->
+[Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 3 →](03-control-structures.md)
+
 # Chapter 2 - Variables and Data Types, Constants and Input/Output
 
 ## 2.1 Variables
@@ -6,15 +9,18 @@ As in Python, variables in C++ are not the same as variables in mathematics. In 
 
 In Python, the following is legal:
 
+```text
 x = 24
-
-x = “Bob”
+x = "Bob"
+```
 
 In C++, once x is initialized as an int, it must remain an int.:
 
+```cpp
 int x = 5;
+```
 
-x = “Bob”;  would give an **invalid conversion** error.
+`x = "Bob";` would give an **invalid conversion** error.
 
 The operation system allocated a chunk of memory to each running program. When we initialize a variable in C++, the OS will reserve an area of memory to hold data. The size of this area will depend on the type of variable declared, and to some degree on the operating system you are using. On ludwig, any variable declared as an **int** (integer) will take up 4 bytes (32 bits). The range of integers is thus -2,147,483,648 to 2,147,483,647.
 
@@ -26,7 +32,9 @@ int x = 5;
 
 This command creates a 4 byte area in the program's memory, assigns the name x to that location, and places the number 5 in that area. Let’s say the memory address happens to be 0x1000. When we execute a line such as:
 
+```cpp
 cout <<  x  << endl;
+```
 
 the program goes to location 0x1000 in memory, sees that there is a 5 stored there, prints 5 to the screen, and then goes to the next line.
 
@@ -94,9 +102,10 @@ This occurs when the programmer specifies the conversion in code. C++ offers a c
 
 Example
 
+```cpp
 int x = 5;
-
-float y = static\_cast\<float>(x);
+float y = static_cast<float>(x);
+```
 
 ## 2.4 Constants
 
@@ -114,7 +123,9 @@ Example:
 
 In a program you see the following code:
 
-pv = `futureValue / pow(1 + .25, periods);`
+```cpp
+pv = futureValue / pow(1 + .25, periods);
+```
 
 What does the .25 represent? There is not much context to know. In this case, .25 is an interest rate. The code would be more readable if modified to this:
 
@@ -242,9 +253,8 @@ This is where the arguments start. Do we do the multiplication on the division f
 
 We can write a quick program to verify this.
 
-// Program to test PEMDAS
-
 ```cpp
+// Program to test PEMDAS
 #include <iostream>
 using namespace std;
 
@@ -367,3 +377,7 @@ When a program has a formula, you must make sure that the results given are corr
 4. Create a program that asks the user for their name, age, and favorite number. Then, display a personalized greeting incorporating all the input.
 5. Write a program that asks the user to input three integers. Calculate their average and print the result.
 6. Write a program that takes two numbers as input and performs addition, subtraction, multiplication, division, and modulus operations. Print the results.
+
+---
+
+[← Previous: Chapter 1](01-introduction-to-cpp.md) | [Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 3 →](03-control-structures.md)

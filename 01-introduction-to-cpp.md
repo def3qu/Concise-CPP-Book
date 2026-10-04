@@ -1,3 +1,6 @@
+<!-- nav -->
+[Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 2 →](02-variables-and-data-types.md)
+
 # Chapter 1 - Introduction to C++
 
 ## 1.1 Necessary Background
@@ -56,15 +59,13 @@ Note that for the get, we can either ask the user for the values, or pull them f
 
 Pseudocode
 
+```text
 // Determine MPG
-
 Ask user for miles travelled
-
 Ask user for gallons used
-
 mpg = miles/gallons
-
 print out mpg
+```
 
 We could also use flowcharts or even full programs to express the algorithm.
 
@@ -234,3 +235,7 @@ Now you can say you have successfully written and compiled a C++ program! There 
 ### 1.8.3 New Emacs Commands
 
 ***Ctrl-x Ctrl-c*** **-** exit emacs. You will be asked to save the file if there are any unsaved changes.
+
+---
+
+[Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 2 →](02-variables-and-data-types.md)

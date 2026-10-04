@@ -1,3 +1,6 @@
+<!-- nav -->
+[Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 6 →](06-arrays.md)
+
 # Chapter 5 - Functions
 
 ## 5.1 Introduction to Functions
@@ -469,29 +472,22 @@ Note: you need to make sure that only positive integers are sent to the function
 
 Now, let's step through how  will be calculated..
 
-Call 1 fact(6)  Return 6 x fact(5)  wait on call 2
+```text
+Call 1  fact(6)         Return 6 x fact(5)              wait on call 2
+Call 2          fact(5)         Return 5 x fact(4)              wait on call 3
+Call 3  fact(4)         Return 4 x fact(3)              wait on call 4
+Call 4  fact(3)         Return 3 x fact(2)              wait on call 5
+Call 5  fact(2)         Return 2 x fact(1)              wait on call 6
+Call 6  fact(1)         Base case, so return 1 to call 5        ends
 
-Call 2     fact(5)  Return 5 x fact(4)  wait on call 3
-
-Call 3 fact(4)  Return 4 x fact(3)  wait on call 4
-
-Call 4 fact(3)  Return 3 x fact(2)  wait on call 5
-
-Call 5  fact(2)  Return 2 x fact(1)  wait on call 6
-
-Call 6  fact(1)  Base case, so return 1 to call 5 ends
-
-Call 5 receives the 1 from Call 6  return 2x1=2 to call 4  ends
-
-Call 4 receives the 2 from Call 5  return 3x2=6 to call 3  ends
-
-Call 3     receives the 6 from Call 4  return 4x6-24 to call 2  ends
-
-Call 2 receives the 12 from Call 3 return 5x24 =120 to call 1  ends
-
-Call 1 receives the 60 from Call 2 return 6x120=720 to main() ends
+Call 5  receives the 1 from Call 6              return 2x1=2 to call 4          ends
+Call 4  receives the 2 from Call 5              return 3x2=6 to call 3          ends
+Call 3          receives the 6 from Call 4              return 4x6-24 to call 2         ends
+Call 2  receives the 12 from Call 3     return 5x24 =120 to call 1      ends
+Call 1  receives the 60 from Call 2     return 6x120=720 to main()      ends
 
 main() receives 720, which is the correct answer for 6!
+```
 
 How do we go about coding this? The key is that every recursive function needs to check to see if the parameter sent in is a base case. If so, it returns an answer and recursion stops. If not, it makes a recursive call.
 
@@ -517,3 +513,7 @@ Here are some guidelines to follow when creating functions:
 - Don’t print within a function unless you only print in a function
     - Example: If you create a function to convert Fahrenheit to Celcius, it is better to return the Celcius value to the calling program rather than print it in the function. This will be more generally useful for other parts of your program.
 - Make sure that you have appropriate comments in your function
+
+---
+
+[← Previous: Chapter 4](04-repetition.md) | [Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 6 →](06-arrays.md)

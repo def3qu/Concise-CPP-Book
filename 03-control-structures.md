@@ -1,3 +1,6 @@
+<!-- nav -->
+[Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 4 →](04-repetition.md)
+
 # Chapter 3 - Control Structures
 
 Up until now, program flow has moved sequentially from the first line to the last. We declare variables, we ask for input, we perform calculations, we output results, then we stop. In order to make useful programs, we need to add two things. The first is to have control structures that allow us to selectively execute some lines but not others. This chapter discusses selective execution. The second is the ability to repeat sections of code. We will cover that in Chapter 4.
@@ -413,3 +416,7 @@ if(x>100){if(y>100){cout<<"Both greater than 100";}}
 ```
 
 The unclear spacing still works, but is much harder to see what is going on.
+
+---
+
+[← Previous: Chapter 2](02-variables-and-data-types.md) | [Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 4 →](04-repetition.md)

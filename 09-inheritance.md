@@ -1,3 +1,6 @@
+<!-- nav -->
+[Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 10 →](10-pointers.md)
+
 # Chapter 9 - Inheritance
 
 ## 1. Introduction to Inheritance
@@ -223,3 +226,7 @@ int main()
 ```
 
 Note, when I try to initialize an Animal object, I get the following error "cannot declare variable ‘a’ to be of abstract type ‘Animal’"
+
+---
+
+[← Previous: Chapter 8](08-structs-and-classes.md) | [Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 10 →](10-pointers.md)

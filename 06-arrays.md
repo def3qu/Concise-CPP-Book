@@ -1,3 +1,6 @@
+<!-- nav -->
+[Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 7 →](07-strings.md)
+
 # Chapter 6 - Arrays
 
 ## 6.1 Introduction to Arrays
@@ -500,3 +503,7 @@ else
 ```
 
 Which correctly prints that 13 is found while 33 is not.
+
+---
+
+[← Previous: Chapter 5](05-functions.md) | [Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 7 →](07-strings.md)
