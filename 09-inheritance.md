@@ -227,6 +227,7 @@ int main()
 
 Note that when I try to initialize an Animal object, I get the following error: "cannot declare variable ‘a’ to be of abstract type ‘Animal’"
 
+<h1>This chapter is unfinished</h1>
 ---
 
 [← Previous: Chapter 8](08-structs-and-classes.md) | [Table of contents](https://def3qu.github.io/Concise-CPP-Book/) | [Next: Chapter 10 →](10-pointers.md)
