@@ -75,6 +75,8 @@ double *ptrY = &y;
 
 In the first pointer declaration, we are really saying "create a pointer to an int called ptrX and assign it the value of the memory address where the variable x lives."
 
+<h1>Topics only from here down. Still in progress</h1>
+
 - Declaring pointer variables
 - The address-of operator (&)
 - The dereference operator (\*)
