@@ -7,9 +7,9 @@
 
 ### 8.1.1 What is OOP?
 
-Object-Oriented Programming (OOP) is a programming paradigm that organizes programs into objects that can be used to represent real life objects. Each object will combine the **data(attributes)** that an instance of the object needs to remember and the **behavior(methods)** which are what an instance of the object can do with the data it holds. For example, we can create a Car class. Attributes could be make, model. color. mpg. Methods could be move(), turn() or stop().
+Object-Oriented Programming (OOP) is a programming paradigm that organizes programs into objects that can be used to represent real-life objects. Each object will combine the **data (attributes)** that an instance of the object needs to remember and the **behavior (methods)** which are what an instance of the object can do with the data it holds. For example, we can create a Car class. Attributes could be make, model, color, mpg. Methods could be move(), turn() or stop().
 
-### 8.1.2  Key OOP Principles
+### 8.1.2 Key OOP Principles
 
 - **Encapsulation:** Grouping related data and functions together
 - **Abstraction:** Hiding implementation details, exposing only necessary features
@@ -18,7 +18,7 @@ Object-Oriented Programming (OOP) is a programming paradigm that organizes progr
 
 ### 8.1.3 Comparing OOP in Python vs. C++
 
-We saw classes in Python. One of the major differences in C++, is that all attributes and methods need to be explicitly typed rather than in Python where they are dynamic. In C++ we also need to manage the memory in our programs. Also, Python classes are a bit more flexible.
+We saw classes in Python. One of the major differences in C++ is that all attributes and methods need to be explicitly typed rather than in Python where they are dynamic. In C++ we also need to manage the memory in our programs. Also, Python classes are a bit more flexible.
 
 ## 8.2 Structs in C++
 
@@ -26,7 +26,7 @@ We will start our discussion of OOP in C++ with **structs**. While in reality st
 
 ### 8.2.1 Creating a Struct
 
-It may help to start with an example. Let's say we are going to create a gradebook program, and we need to track some data about students. We need to track the name, class, and gpa for each student. To avoid many, many variables that we can't iterate through, we will create a struct to hold the data
+It may help to start with an example. Let's say we are going to create a gradebook program, and we need to track some data about students. We need to track the name, grade level, and GPA for each student. To avoid many, many variables that we can't iterate through, we will create a struct to hold the data:
 
 ```cpp
 struct Student
@@ -61,7 +61,7 @@ cout << "\tClass: " << s2.gradeLevel << endl;
 cout << "\tGPA: " << s2.gpa << endl;
 ```
 
-We can change the value of any objects attributes at any time as follows:
+We can change the value of any object's attributes at any time as follows:
 
 ```cpp
 s1.gpa = 2.9;
@@ -69,7 +69,7 @@ s1.gpa = 2.9;
 
 **Passing Structs to Functions**
 
-By default, Structs are passed to functions by value, which means changes made in the function are not reflected when we return to the calling function. You can also pass structs by reference by appending a & to the struct name in the function signature. Passing by reference is preferred when dealing with a large struct, as it may take up a lot of memory that would need to be duplicated with pass by value. Remember, to add the **const** keyword if the function should not modify the attributes of the struct.
+By default, structs are passed to functions by value, which means changes made in the function are not reflected when we return to the calling function. You can also pass structs by reference by appending a & to the struct name in the function signature. Passing by reference is preferred when dealing with a large struct, as it may take up a lot of memory that would need to be duplicated with pass by value. Remember to add the **const** keyword if the function should not modify the attributes of the struct.
 
 Here is an example program that creates a struct to represent a geometric point:
 
@@ -107,15 +107,13 @@ int main()
 }
 ```
 
-## 3. Classes in C++
-
-### 3.1 Difference Between Structs and Classes
+## 8.3 Difference Between Structs and Classes
 
 In theory, the only real difference between structs and classes is that structs default to public access while classes default to private access. Public here means that we can access the information outside of the struct or class. So in the above example, when we cout p.x, we can do this because x has the default public access. We will talk about public and private more below.
 
 In practice, we create structs with data only, no methods. This comes in part from structs in C, which cannot have methods. We will stay with this practice.
 
-### 3.2 Introduction to Classes
+## 8.4 Introduction to Classes
 
 Classes allow us to combine data the same as structs. In addition, we are able to add methods to manipulate the data. This allows for the encapsulation of OOP where classes combine the data and the operations that act on that data.
 
@@ -145,7 +143,7 @@ void setAge(int a)
 }
 ```
 
-We now can define a whole class. Typically, we will save class definitions in their own file, and then include that file in any program that needs to use them. Here is an example of a class definition for a Car class:
+We now can define a whole class. Often Classes are split into two files. The basic design is stored in a header file with a .h extension. The details are in a class file with a .cpp extension. Small classes can include both in one. You need to include the class file in a program you want to use the class. Here is an example of a class definition for a Car class:
 
 ```cpp
 class Car
@@ -181,9 +179,15 @@ public:
 };
 ```
 
-### Creating and Using Classes
+Note, if creating a header file, you want to make sure it does not get included more than once. You can do this by adding:
 
-To use a class, we have to make an instance of the class. We call these objects. We can think of Classes as Cookie Cutters and Objects as Cookies. Just as you can't eat a cookie cutter, you can't directly use a Class. You have to instantiate an object of the Class type. Let's create and instance of our Car class above:
+\#pragma once
+
+at the start of the class.
+
+## 8.5 Creating and Using Classes
+
+To use a class, we have to make an instance of the class. We call these objects. We can think of Classes as Cookie Cutters and Objects as Cookies. Just as you can't eat a cookie cutter, you can't directly use a Class. You have to instantiate an object of the Class type. Let's create an instance of our Car class above:
 
 ```cpp
 Car myCar;
@@ -214,15 +218,15 @@ int main()
 }
 ```
 
-## 4. Constructors and Destructors
+## 8.6 Constructors and Destructors
 
 Constructors and Destructors are special functions that are called when objects are created and destroyed.
 
-### 4.1 Constructors
+### 8.6.1 Constructors
 
-Constructors are called when an object is instantiated. Constructors have the same name as the class, and have no return type.
+Constructors are called when an object is instantiated.  Constructors assign values to the member data of the class. Constructors have the same name as the class and have no return type.
 
-Here is an example of a constructor for the Car class we define above.
+Here is an example of a constructor for the Car class we defined above.
 
 ```cpp
 class Car
@@ -264,19 +268,19 @@ Car myCar();
 
 would create an object called myCar with make="Ford" and year = 1999.
 
-### 4.2 Destructors
+### 8.6.2 Destructors
 
 Destructors are called when the object is deleted. Their main use is to free up dynamically allocated memory. We have not done that, so for now we will just say that destructors have the same name as the class, but with a \~ prepended. So the destructor for the **Car** class would be **\~Car**. It has no return type, and takes no parameters.
 
-## 5. Access Specifiers: Public, Private, and Protected
+## 8.7 Access Specifiers: Public, Private, and Protected
 
 We have already seen **public** and **private** used in code examples, but what do they really mean? These are known as Access Specifiers and denote where the attributes and methods of a class can be accessed. There is also a **protected** specifier that we have not seen yet.
 
 - **Public:** Accessible from anywhere. There are no restrictions on use.
 - **Private:** Accessible only from methods defined within the class. Not available outside.
-- **Protected:** Accessible in derived classes (used in inheritance which we will cover later)
+- **Protected:** Accessible in derived classes (used in inheritance, which we will cover later)
 
-### 5.1 Example of Public and Private
+### 8.7.1 Example of Public and Private
 
 ```cpp
 class ClassA
@@ -306,15 +310,15 @@ int main()
 }
 ```
 
-When we compile this, we get a "is private in this context" error when we try to directly change x or run the displayX() function. Since y and displayY() are public, they can be accessed from main().
+When we compile this, we get an "is private in this context" error when we try to directly change x or run the displayX() function. Since y and displayY() are public, they can be accessed from main().
 
-As a general rule, all attributes should be private so you can control how they are updated. Most functions are public, unless there is a reason to restrict them to use only within the classes other attributes.
+As a general rule, all attributes should be private so you can control how they are updated. Most functions are public, unless there is a reason to restrict them to use only within the class's other attributes.
 
-## 6. Accessors and Mutators to Access Private Attributes
+## 8.8 Accessors and Mutators to Access Private Attributes
 
 When we place our attributes under the **private** access specifier, there is no way for code in other parts of your program to access them. To allow controlled access to these attributes, we need to add public functions.
 
-### 6.2 Accessors or Getters
+### 8.8.1 Accessors or Getters
 
 To allow access but not modification of private attributes, we create public **accessor** functions, also known as **getters**. These functions don't do anything except return the value of the attribute. This seems like a trivial thing, but because the attributes are private, we need a public function to allow other code to see them.
 
@@ -333,11 +337,11 @@ int getY()
 
 All Accessor functions will look like this.
 
-### 6.3 Mutators or Setters
+### 8.8.2 Mutators or Setters
 
-If you want to allow the private attributes to be changed (following rules you define) add some public **mutator** functions also known as **setters**. Setters are `void` functions that take a parameter of the type of the attribute they are attached to. The functions check to see if the parameter value is acceptable, and if so, make the change to the attribute.
+If you want to allow the private attributes to be changed (following rules you define), add some public **mutator** functions, also known as **setters**. Setters are `void` functions that take a parameter of the type of the attribute they are attached to. The functions check to see if the parameter value is acceptable, and if so, make the change to the attribute.
 
-Let's return to the Point class above, with private attributes **x** and **y**. Assume that in this particular program. we need to restrict both **x** and **y** to values between -20 and 20. Our **setter** functions will need to enforce this. These programs should be named **setX()** and **setY()**. Both functions will be void, and will take an int as a parameter. Here are the functions.
+Let's return to the Point class above, with private attributes **x** and **y**. Assume that in this particular program, we need to restrict both **x** and **y** to values between -20 and 20. Our **setter** functions will need to enforce this. These functions should be named **setX()** and **setY()**. Both functions will be void, and will take an int as a parameter. Here are the functions.
 
 ```cpp
 void setX(int a)
@@ -365,7 +369,7 @@ void setY(int a)
 }
 ```
 
-We can now modify **x** and **y** from anywhere in our code, as long as we follow the rules. Here is a fully class definition of the Point class with a sample use in main()
+We can now modify **x** and **y** from anywhere in our code, as long as we follow the rules. Here is a full class definition of the Point class with a sample use in main().
 
 ```cpp
 #include <iostream>

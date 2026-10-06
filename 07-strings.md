@@ -13,7 +13,7 @@ string name = "Bob";
 
 There is more to strings than just being a data type. They are also a linear data structure like the arrays that we just covered. This means we can use them to store and organize data.
 
-In particular, strings in C++ store a sequence of characters, enclosed in double quotes. Inside of the double quotes we can have any letters, numbers, punctuation or spaces that we want.  The word sequence is important. Strings are stored in order. The string "hello" is not the same as the string "olleh".
+In particular, strings in C++ store a sequence of characters, enclosed in double quotes. Inside of the double quotes we can have any letters, numbers, punctuation or spaces that we want. The word sequence is important. Strings are stored in order. The string "hello" is not the same as the string "olleh".
 
 The strings we are speaking of here refer specifically to what is known as a std::string. C, which was the predecessor of C++, did not have strings and instead used arrays of chars. We will talk more about C-style strings later in this chapter. Unless otherwise specified, string will mean std::string.
 
@@ -37,34 +37,36 @@ string s = "hello";
 char c = s[0];    // c contains 'h'
 ```
 
-- **Mutability** - individual parts of a string can be changed, unlike in other language such as Python and Java. So the following is permissible:
+- **Mutability** - individual parts of a string can be changed, unlike in other languages such as Python and Java. So the following is permissible:
 
 ```cpp
 string s = "hello";
 s[0] = 'H';
 ```
 
-- **Comparison operators** - we can use >, <, >=, <=, ==, and != with strings. They will be compared in **lexicographical** or dictionary order.  So, "Apple" is less than "Banana" since 'A' evaluates to 65 and 'B' evaluates to 66. Note that there is an order to punctuation marks, but it is not self-evident what that order is. See  ASCII Table in Appendix E..
-- **Built-in Copy Constructor** - we can easily copy strings using the assignment operator (=):
+- **Comparison operators** - we can use >, <, >=, <=, ==, and != with strings. They will be compared in **lexicographical** or dictionary order. So, "Apple" is less than "Banana" since 'A' evaluates to 65 and 'B' evaluates to 66. Note that there is an order to punctuation marks, but it is not self-evident what that order is. See the ASCII Table in Appendix E.
+- **Copying** - we can easily copy strings using the assignment operator (=):
 
 ```cpp
 string name1 = "Bob";
 string name2 = name1;
 ```
 
-- **Can use cin and cout just like any other data type -**
+- Can use cin and cout just like any other data type, with the caveat that it will stop on while spaces. If you need to capture whitespaces, you must use **getline(cin, s)**.
 
 ```cpp
 string name;
 cout << "What is your name? ";
 cin >> name;
+   // or to include whitespaces
+   getline(cin, name);
 ```
 
 ### 7.1.3 Iterating Through a String
 
 Just like with arrays, we can use a **for loop** to iterate through the characters of a string one by one.
 
-To do this, we need to know the length of the string. Unlike arrays, strings know how long they currently are.  We have two options for this, .length() or .size(). They function identically.  Here is an example using the length in a for loop.
+To do this, we need to know the length of the string. Unlike arrays, strings know how long they currently are. We have two options for this: .length() or .size(). They function identically. Here is an example using the length in a for loop.
 
 ```cpp
 string major = "Computer Science";
@@ -76,7 +78,7 @@ for(int i=0; i<major.size(); i++)
 
 This code will print out each character of the string on its own line.
 
-There is a more modern style of **for loops** that looks a little more Python like:
+There is a more modern style of **for loops** that looks a little more Python-like:
 
 ```cpp
 for (char ch : major)
@@ -120,16 +122,16 @@ It turns out that using += instead of + is more efficient, as it requires the CP
 
 ## 7.2 C-strings
 
-C, from which C++ developed, did not have strings. To represent a sequence of characters, you make an array of chars. C strings are terminated by a null character '\\0'.
+C, from which C++ developed, did not have strings. To represent a sequence of characters, you make an array of chars. C-strings are terminated by a null character '\\0'.
 
-There are two ways to declare c-strings in C++.
+There are two ways to declare C-strings in C++.
 
 ```cpp
 char str1[6] = {'H', 'e', 'l', 'l', 'o', '\0'}; // Null char at end
 char str2[] = "Hello";     // Implicit null termination
 ```
 
-We can use `cin` and `cout` on C strings. Here is an example:
+We can use `cin` and `cout` on C-strings. Here is an example:
 
 ```cpp
 char city[26];    // we can store 25 chars, as the \0 takes up 1
@@ -152,11 +154,11 @@ Here are some common \<cstring> functions:
 
 | Function | Purpose |
 | --- | --- |
-| `strcpy(from, to)` | Copies from one string to another<br>DO NOT USE. It does not limit the size copied, and can result in a Buffer Overflow (see example below) |
-| `strncpy(from, to, size)` | Safely copies from one string to another by limiting the size to be copied |
+| `strcpy(destination, source)` | Copies from one string to another<br>DO NOT USE. It does not limit the size copied, and can result in a Buffer Overflow (see example below) |
+| `strncpy(destination, source, size)` | Safely copies from one string to another by limiting the size to be copied |
 | `strlen(string)` | Returns the length of a string (not including the Null Terminator) |
-| `strcat(orig, to add)` | Concatenates a string to another string |
-| `strcmp(str1, str2)` | Compares two strings. 0 means equal, 1 means unequal |
+| `strcat(destination, source)` | Concatenates a string to another string |
+| `strcmp(str1, str2)` | Compares two strings. 0 means equal, anything else means unequal |
 
 Example program with cstring functions:
 
@@ -171,7 +173,7 @@ int main()
     cout << "Concatenated string: " << name1 << endl;
     cout << "Comparison (Bob vs Bob): " << strcmp(name2, "Bob") << endl;
     cout << "Comparison (Bob vs Alice): " << strcmp(name2, "Alice") << endl;
-    return 0
+    return 0;
 }
 ```
 
@@ -195,7 +197,7 @@ int main() {
 
 ### 7.3.1 Substrings
 
-You can create substrings from an existing string by using the .substr function. This function is appended to a string variable and takes two int parameters. The first parameter is the position to start the substring (where 0 represents the first character.) The second parameter gives the length of the substring to be extracted. Here are some examples:
+You can create substrings from an existing string by using the .substr function. This function is appended to a string variable and takes two int parameters. The first parameter is the position to start the substring (where 0 represents the first character). The second parameter gives the length of the substring to be extracted. Here are some examples:
 
 ```cpp
 string str1 = "Hello There";
@@ -205,7 +207,7 @@ string str3 = str1.substr(6, 5);   // str3 is "There"
 
 ### 7.3.2 Searching for Substrings within a String
 
-We can see if a substring is contained in a string using the **.find()** function. This function is appended to a string variable and takes as a parameter, the substring you are looking for. If found, the function returns a **size\_t** that shows the position in the string that the substring starts. A **size\_t** is a special kind of unsigned int (no negative numbers) that is used to represent indices. If not found, a special character, string::npos is returned. string::npos is the largest possible **size\_t** number and is used to represent when a string is not found..
+We can see if a substring is contained in a string using the **.find()** function. This function is appended to a string variable and takes as a parameter the substring you are looking for. If found, the function returns a **size\_t** that shows the position in the string that the substring starts. A **size\_t** is a special kind of unsigned int (no negative numbers) that is used to represent indices. If not found, a special character, string::npos, is returned. string::npos is the largest possible **size\_t** number and is used to represent when a string is not found.
 
 Here are some examples:
 
@@ -271,7 +273,7 @@ The following are functions to modify strings:
 
 ### 7.3.4 Conversion between std::string and C-style strings
 
-You can convert a std:string to a c-string using the  **.c\_str()**. Here is an example:
+You can convert a std::string to a C-string using the **.c\_str()**. Here is an example:
 
 ```cpp
 string str = "Hello, World!";
@@ -279,6 +281,8 @@ const char* c_str = str.c_str();
 ```
 
 ## 7.4 Example Program
+
+We are going to use the string numbering to reverse a string by swapping first and last positions then moving toward the center.
 
 Reversing a string:
 

@@ -5,25 +5,25 @@
 
 ## 5.1 Introduction to Functions
 
-Like several topics we will discuss, functions in C++ are not like functions in Mathematics. Luckily, however, they are similar in concept to Python functions, although the syntax is different.
+Like several topics we will discuss, functions in C++ are not like functions in mathematics. Luckily, however, they are similar in concept to Python functions, although the syntax is different.
 
-Functions are a self-contained block of code that is written to perform a specific task. Functions are created to break up programs into logical units. They also serve to make programs easier to read and easier to modify.
+Functions are self-contained blocks of code that is written to perform a specific task. Functions are created to break up programs into logical units. They also serve to make programs easier to read and easier to modify.
 
-Functions can take input called parameters, and can return output. We can think of functions as black boxes. We send in parameters and get results.
+Functions can take input called parameters and can return output. We can think of functions as black boxes. We send in parameters and get results.
 
 ![Diagram of a function as a box labeled "Function": optional parameter(s) go in and optional output comes out.](images/ch05-function-diagram.png)
 
-Functions can take many parameters, or none at all. Functions can return one item or not any at all. Some functions are built-in to C++, while others are created by the programmer.
+Functions can take many parameters, or none at all. Functions can return one item or not any at all. Some functions are built into C++, while others are created by the programmer.
 
 ## 5.2 Using Built-in Functions
 
-We have already been using some built-in functions, **cin**, **cout** and **endl** are all functions. Those 3 are found in the <**iostream**> library. There are many other functions we can use, often found in libraries that must be included to use them in our code. The math library in C++ is called <**cmath>**. It contains many useful functions that we will discuss throughout the rest of the book. As an example, we will use the **pow** function to do exponentiation (raising a number to a power.) To use this function, we need to add the following line to the top of our program.
+There are many built-in functions we can use, often found in libraries that must be included to use them in our code. The math library in C++ is called <**cmath>**. It contains many useful functions that we will discuss throughout the rest of the book. As an example, we will use the **pow** function to do exponentiation (raising a number to a power). To use this function, we need to add the following line to the top of our program.
 
 ```cpp
 #include <cmath>
 ```
 
-The **pow** function itself takes two parameters, a base and an exponent, and returns the base raised to the exponent power.  The return value will need to be printed or saved to a variable. The base and the exponent can be any combination of ints, floats or doubles. The results will be a double, but could be implicitly cast to an int. Here is how we could use the **pow** function:
+The **pow** function itself takes two parameters, a base and an exponent, and returns the base raised to the exponent power. The return value will need to be printed or saved to a variable. The base and the exponent can be any combination of ints, floats or doubles. The results will be a double, but could be implicitly cast to an int. Here is how we could use the **pow** function:
 
 ```cpp
 int n = pow(5, 2);
@@ -49,10 +49,10 @@ Other useful functions can be found in the <**string**> library.
 | **Name** | **Output** |
 | --- | --- |
 | length()/size() | Returns the length of a string<br>`cout << s.length() << endl;` |
-| substr(pos, len) | Extracts substring starting a pos with length len |
+| substr(pos, len) | Extracts substring starting at pos with length len |
 | find(str) | Finds the first instance of str in string |
 
-There are many other libraries, some of which we will cover later in the book
+There are many other libraries, some of which we will cover later in the book.
 
 ## 5.3 Creating a Function
 
@@ -65,11 +65,11 @@ returnType functionName(parameters)
 }
 ```
 
-Return type is either void(if nothing is returned) or the data type that will be returned. The function name follows normal naming conventions for variables. The parameters are typed input values that we are sending to the function.
+Return type is either void (if nothing is returned) or the data type that will be returned. The function name follows normal naming conventions for variables. The parameters are typed input values that we are sending to the function.
 
 The return type along with the type and number of parameters is known as the function’s signature.
 
-The function body defines what the function does. Note, a function cannot access any variables from another function (like main()) unless it is passed as a parameter.
+The function body defines what the function does. Note that a function cannot access any variables from another function (like main()) unless it is passed as a parameter.
 
 ### 5.3.1 Void functions
 
@@ -102,7 +102,7 @@ void greeting(string message, string name)
 
 It is common for a function to return a value. Only one item can be returned from a function. If you need to return more than one thing, keep reading. We will address that in future chapters.
 
-Let’s create a function that takes two Integers and returns the modulus or remainder when you divide the first by the second. The remainder will be an integer, so the return type of our function has to be **`int`**. The function takes two parameters that are both integers.
+Let’s create a function that takes two integers and returns the modulus or remainder when you divide the first by the second. The remainder will be an integer, so the return type of our function has to be **`int`**. The function takes two parameters that are both integers.
 
 ```cpp
 int remainder(int x, int y)
@@ -151,7 +151,7 @@ int main()
 }
 ```
 
-If the function takes parameters, it is essential that you pass along the correct number and the correct type of values.  If we are call the remainder() function as follows:
+If the function takes parameters, it is essential that you pass along the correct number and the correct type of values. If we call the remainder() function as follows:
 
 ```cpp
 remainder(4, 3, 7)
@@ -161,15 +161,15 @@ The program will not compile. Instead we will get a “Too many arguments to fun
 
 ### 5.4.2 Passing Values to Functions
 
-In order to understand how to pass arguments to a function, we need to talk about where the program exists in memory. Remember, in C++, we can directly interact with the memory. When we run a program, the Operating System (Ubuntu Linux in our case) will reserve a contiguous memory block to run the program. How much memory it gets varies widely, and is beyond the scope of this book. In C++, each program will have a main() function, so it gets placed in a portion of the block reserved for the program.
+In order to understand how to pass arguments to a function, we need to talk about where the program exists in memory. Remember, in C++, we can directly interact with the memory. When we run a program, the Operating System (Ubuntu Linux in our case) will reserve a contiguous memory block to run the program. How much memory it gets varies widely, and is beyond the scope of this book. In C++, each program will have a main() function, so it gets placed in a stack frame on the call stack in memory.
 
 ![Memory diagram: a large box labeled "memory allocated to program" with a smaller section at the bottom labeled "memory allocated to main()".](images/ch05-stack-memory-1.png)
 
-All of the variables we define in main() are stored in its block of memory. Note that main() does not take up all of the memory for the program. When we call another function, say F1  that function is loaded into a different memory block.
+All of the variables we define in main() are stored in its block of memory. Note that main() does not take up all of the memory for the program. When we call another function, say F1, that function is loaded into a different memory block.
 
 ![Memory diagram with two sections stacked at the bottom of the program memory: "main" at the very bottom and "F1" above it. No variables are shown yet.](images/ch05-stack-memory-2.png)
 
-If we define a variable in main(), such as an Integer x that is equal to 5, then x is stored in main’s memory block. If the program control is moved to F1, F1 cannot access x, and will return an error.
+If we define a variable in main(), such as an integer x that is equal to 5, then x is stored in main’s memory block. If the program control is moved to F1, F1 cannot access x, and will return an error.
 
 ![The same memory diagram with a variable x holding the value 5 inside the "main" section; the "F1" section is still empty.](images/ch05-stack-memory-3.png)
 
@@ -188,7 +188,7 @@ int main()
 }
 ```
 
-When we try to compile, we get an error that ‘x’ was not declared in this scope. To pass the 5 to F1, we have to include it as a parameter. That way the value of x, 5, is passed along to F1, and a variable is reserved in F1 to hold that value. It will be named whatever is listed in the function’s definition. So if we rewrite out code as follows:
+When we try to compile, we get an error that ‘x’ was not declared in this scope. To pass the 5 to F1, we have to include it as a parameter. That way the value of x, 5, is passed along to F1, and a variable is reserved in F1 to hold that value. It will be named whatever is listed in the function’s definition. So if we rewrite our code as follows:
 
 ```cpp
 int F1(int x)
@@ -203,7 +203,7 @@ int main()
 }
 ```
 
-The code compiles with no errors. Let's take a look at what the memory looks like while F1 is operating, i.e. before the return.
+The code compiles with no errors. Let's take a look at what the memory looks like while F1 is operating, i.e., before the return.
 
 ![The same memory diagram with a variable x holding the value 5 in the "main" section and another variable x holding 5 in the "F1" section.](images/ch05-stack-memory-4.png)
 
@@ -224,7 +224,7 @@ int main()
 }
 ```
 
-Even though we are changing the value of x in F1, when we print out x along with the return value from F!, x will still have the value of 5. Sending a variable to a function this wayl is called Pass by Value. No matter what happens to variables that are Passed By Value, they can have no side effects on the calling function.
+Even though we are changing the value of x in F1, when we print out x along with the return value from F1, x will still have the value of 5. Sending a variable to a function this way is called Pass by Value. No matter what happens to variables that are Passed By Value, they can have no side effects on the calling function.
 
 ### 5.4.3 Passing References to Variables to a Function
 
@@ -350,7 +350,7 @@ void F1(int &, int &);
 
 Functions come to life when they are called. They go away and release their memory when a **return** statement is encountered.
 
-Scope refers to whether a variable or function is visible and accessible. If declared within a function, variables have scope only in that function. If you want a variable to have global scope, i,e, visible from all parts of a program, it needs to be declared outside of any function. Let’s modify our Pass by Reference Program again.
+Scope refers to whether a variable or function is visible and accessible. If declared within a function, variables have scope only in that function. If you want a variable to have global scope, i.e., visible from all parts of a program, it needs to be declared outside of any function. Let’s modify our Pass by Reference Program again.
 
 ```cpp
 // Global Variables
@@ -379,7 +379,7 @@ void F1(int &x, int &y)
 
 ## 5.7 Default Arguments
 
-You can assign default values to the parameters that are sent to a function. These default parameters are set in the function signature, and will be used if the function call does not include the parameter. Here is a simple example:
+You can assign default values to the parameters that are sent to a function. These default parameters are set in the function signature and will be used if the function call does not include the parameter. If you are using function prototypes, the default arguments go in the prototype only. Here is a simple example:
 
 ```cpp
 void F1(int age = 25, string name="Bob")
@@ -408,7 +408,7 @@ Alice is 45     // Both age and name are sent and used
 There are some restrictions on the use of default parameters.
 
 - You could not call F1 with only a name. You can only leave off parameters from the right.
-- Once a parameter is given a default value, all parameters to the right have to have default values as well
+- Once a parameter is given a default value, all parameters to the right have to have default values as well.
 
 ## 5.8 Function Overloading
 
@@ -436,7 +436,7 @@ Now the decimal portion will display correctly.
 
 ## 5.9 Recursion
 
-Recursion is when a function calls itself.  Some problems can be solved efficiently using recursion because it allows you to break down a complex problem into simpler versions of itself.
+Recursion is when a function calls itself. Some problems can be solved efficiently using recursion because it allows you to break down a complex problem into simpler versions of itself.
 
 Let's work through an example to see how this works.
 
@@ -450,7 +450,7 @@ In order to be able to write a recursive function, we have to be able to define 
 
 We can now work on a recursive function **fact()**. If **fact()** takes 6 as its input parameter, it will calculate  by multiplying 6 by **fact(5)**. This will create a new copy of the function that will calculate  by multiplying 5 by **fact(4)**. And so on.
 
-When does this end? The one value where we can return a definitive answer for a factorial is 1. . We call this the **base case**. It is the case or cases where we can return an answer directly without having to call the function recursively. If your recursive function does not have a base case, it will keep calling itself until you press ctrl-c, or the computer runs out of memory.
+When does this end? There are two value where we can return a definitive answer for a factorial, 0 and 1. 0! And 1! are both equal to 1. These are both **base cases**. These the case or cases where we can return an answer directly without having to call the function recursively. If your recursive function does not have a base case, it will keep calling itself until you press ctrl-c, or the programs call stack is full.
 
 Here is the code for the **fact()** function.
 
@@ -470,7 +470,7 @@ int fact(int n)
 
 Note: you need to make sure that only positive integers are sent to the function.
 
-Now, let's step through how  will be calculated..
+Now, let's step through how  will be calculated.
 
 ```text
 Call 1  fact(6)         Return 6 x fact(5)              wait on call 2
@@ -491,15 +491,15 @@ main() receives 720, which is the correct answer for 6!
 
 How do we go about coding this? The key is that every recursive function needs to check to see if the parameter sent in is a base case. If so, it returns an answer and recursion stops. If not, it makes a recursive call.
 
-### 5.9.1 Limitations of Recursive Functions
+### 5.9.2 Limitations of Recursive Functions
 
 There are some drawbacks to using recursive functions.
 
-1. They can be difficult to understand. The code is often shorter and more terse than an iterative function that does the same thing
+1. They can be difficult to understand. The code is often shorter and more terse than an iterative function that does the same thing.
 2. Recursive functions use more memory. With each recursive call, the calling function stops and a new function instance has to be created in memory. This can add up if the recursion is deep.
 3. Recursive functions can be **less efficient** than iterative versions due to overhead involved with function calls and memory management.
 
-### 5.9.2 Tail Recursion
+### 5.9.3 Tail Recursion
 
 If the recursive call is the last operation in the function, the compiler can sometimes optimize it into an iterative process. However, this optimization is not always guaranteed in C++.
 
@@ -510,8 +510,8 @@ Here are some guidelines to follow when creating functions:
 - A major goal of functions is reusability. Keep that in mind when developing them.
 - A function should do one thing well. Overly complicated functions cannot be reused easily
 - Have a consistent naming scheme for functions to make them easy to remember
-- Don’t print within a function unless you only print in a function
-    - Example: If you create a function to convert Fahrenheit to Celcius, it is better to return the Celcius value to the calling program rather than print it in the function. This will be more generally useful for other parts of your program.
+- Functions should either calculate something or print something out. Not both.
+    - Example: If you create a function to convert Fahrenheit to Celsius, it is better to return the Celsius value to the calling program rather than print it in the function. This will be more generally useful for other parts of your program.
 - Make sure that you have appropriate comments in your function
 
 ---

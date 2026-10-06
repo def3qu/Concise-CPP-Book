@@ -7,7 +7,7 @@
 
 ### 6.1.1 Definition of an Array
 
-An array is a linear data structure. It allows you to store, and easily access, multiple items of the same data type. They have to be initialized to one type and to a size. It is similar, in some ways, to lists in Python. The biggest difference is the need for all items to be of the same type, and the inability of arrays to grow.
+An array is a linear data structure. It allows you to store, and easily access, multiple items of the same data type. They have to be initialized to one type and to a size. It is similar, in some ways, to lists in Python. The biggest difference is the need for all items to be of the same type, and the inability of arrays to grow. We will cover **vectors** (part of the Standard Template Library) later. They are the closest equivalent to Python lists.
 
 ### 6.1.2 Why use arrays?
 
@@ -27,14 +27,14 @@ If we store the temps in an array, we only need to initialize one. We can also e
 
 ## 6.2 Initializing Arrays
 
-Arrays have to be initialized before they can be used.
+Arrays have to be initialized before they can be used. In most cases, they need to have some default value set to avoid unpredictable data in them.
 
 ### 6.2.1 Declaring arrays
 
-To declare an array, you need to specify the type of data the array will hold, and how many items can be stored.
+To declare an array, you need to specify the type of data the array will hold, and how many items can be stored. The line below also sets each element in the array to 0.
 
 ```cpp
-int arr[5];
+int arr[5] = {0};
 ```
 
 When this statement is executed, the OS will reserve enough contiguous memory to hold five integers. The name arr is really just the starting memory address. If we do the following:
@@ -45,7 +45,7 @@ cout << arr << endl;
 
 …we will get a memory address such as *0x7ffc852d5430*.
 
-When you declare an array, the elements will be set to 0 (if an int).
+When you declare an array without giving it values, the elements contain whatever happened to be in that memory. The values are unpredictable, so if you want them to be something in particular, you need to set the initial values explicitly.
 
 ### 6.2.2 Initializing arrays
 
@@ -55,7 +55,7 @@ We can add values to our array when initialized.
 int arr[5] = {1, 2, 3, 4, 5};
 ```
 
-We can also do a partial initialization
+We can also do a partial initialization:
 
 ```cpp
 int a[5] = {1, 2} // others default to 0
@@ -69,7 +69,7 @@ We can access an element of an array by using its index number. The index number
 
 The index refers to the offset of the element within the contiguous block of memory where the array is stored. The first element is stored at that memory address, so we don’t need to add anything. Hence, the first element in the array `arr` initialized above would be accessed using `arr[0]`.
 
-To get to the second element of `arr`, we would use `arr[1]`. This tells the computer to go to the starting memory address of `arr`, and then to move over the size of an int, which for use is 4 Bytes or 32 Bits. So, if the memory address of our array is *0x7ffc650e04f0*, the memory address of the second element is *0x7ffc650e04f4*, which is 4 more. We can address each of the elements in the array in this fashion.
+To get to the second element of `arr`, we would use `arr[1]`. This tells the computer to go to the starting memory address of `arr`, and then to move over the size of an int, which for us is 4 Bytes or 32 Bits. So, if the memory address of our array is *0x7ffc650e04f0*, the memory address of the second element is *0x7ffc650e04f4*, which is 4 more. We can address each of the elements in the array in this fashion.
 
 ### 6.3.2 Input and Output of array elements
 
@@ -80,7 +80,7 @@ cout << "Enter an Integer: ";
 cin >> arr[1];
 ```
 
-We can also out value of an array in a similar fashion:
+We can also output the value of an array in a similar fashion:
 
 ```cpp
 cout << "You entered " << arr[1];
@@ -88,7 +88,7 @@ cout << "You entered " << arr[1];
 
 ### 6.3.3 Common Errors - out of bounds
 
-An important difference from Python is that C++ does not enforce array limits. In a Python List with three elements, an attempt to access a fourth element will result in a "List Index Out of Bounds” error. C++ has no such guardrails. It is up to the programmer to make sure they do not access items that are out of bounds.
+An important difference from Python is that C++ does not enforce array limits. In a Python List with three elements, an attempt to access a fourth element will result in a “List Index Out of Bounds” error. C++ has no such guardrails. It is up to the programmer to make sure they do not access items that are out of bounds.
 
 In the array `arr` defined above, if we attempt to print out `arr[5]`, it will not trigger a warning. It will instead print out whatever is located in the memory next to where the array ends. Let’s take a look at the memory layout of `arr`:
 
@@ -100,7 +100,7 @@ arr\[0\]         arr\[1\]        arr\[2\]         arr\[3\]       arr\[4\]
 Displaying `arr[0]` through `arr[4]` will print out the 0 we expect. Displaying `arr[5]` will display whatever is randomly stored in the memory next to where arr happens to be stored.
 
 ```cpp
-int arr[5];
+int arr[5] = {0};  // set all array values to 0
 cout << arr[0] << endl;
 cout << arr[4] << endl;
 cout << arr[5] << endl;
@@ -141,7 +141,7 @@ for (int i=0; i<5; i++)
 cout << endl;
 ```
 
-Let's say we want to double each of the elements the user enters. Here is the complete program to initialize and array, ask the user to enter some values, double each value, then print out the array:
+Let's say we want to double each of the elements the user enters. Here is the complete program to initialize an array, ask the user to enter some values, double each value, then print out the array:
 
 ```cpp
 #include <iostream>
@@ -174,7 +174,7 @@ int main()
 
 ### 6.4.2 Tracking the Size of the Array or Using sizeof()
 
-It is standard programming practice in C++ to create a constant variable to hold the size of any array. We can use this to avoid the out of bounds condition described above. Here is an example:
+It is standard programming practice in C++ to create a constant variable to hold the size of any array. We can use this to avoid the out-of-bounds condition described above. Here is an example:
 
 ```cpp
 const int arrSIZE=5;
@@ -187,9 +187,9 @@ for (int i=0; i<arrSIZE; i++)
 cout << endl;
 ```
 
-Note the naming convention used for the size of the array. If you have a way to consistently name things, you never have to work to remember what things are called. In this case, I am using the name of the array followed by SIZE. SIZE is in all caps since it is a constant. Using this method, if I need to know the size of an array called grades, I will know it will be gradesSIZE.
+Note the naming convention used for the size of the array. If you have a way to consistently name things, you never have to work to remember what things are called. In this case, I am using the name of the array followed by SIZE. SIZE is in all caps since it is a constant. Using this method, if I need to know the size of an array called grades, I will know it will be GRADES\_SIZE.
 
-We can also use the **sizeof()** function to determine the array size on the fly. This is not the preferred way to do things, but can be used in a pinch. The sizeof() function returns how much space something takes up. In the above example, the sizeof(arr) is 20. Each int is 4 Bytes and there are 5 of them. The sizeof(arr\[0\]) returns the size of an individual element in arr. Since arr is composed of ints, the size of each element will be 4 Bytes. If we divide the size of arr by the size of arr\[0\], we get 5, which is the size of the array. We could use it as follows:
+We can also use the **sizeof()** function to determine the array size on the fly. This is not the preferred way to do things, but can be used in a pinch. This can ONLY be done where the array has not been passed into a function as a parameter. The sizeof() function returns how much space something takes up. In the above example, the sizeof(arr) is 20. Each int is 4 Bytes and there are 5 of them. The sizeof(arr\[0\]) returns the size of an individual element in arr. Since arr is composed of ints, the size of each element will be 4 Bytes. If we divide the size of arr by the size of arr\[0\], we get 5, which is the size of the array. We could use it as follows:
 
 ```cpp
 int arr[5];
@@ -203,7 +203,7 @@ cout << endl;
 
 ### 6.4.3 Traversing in Reverse Order
 
-By adjusting the for loop, we can print out arrays in reverse order. To do so, we start our loop at the last element, which will be the size of the array -1. We then count backwards until we reach 0, which is the first element.
+By adjusting the for loop, we can print out arrays in reverse order. To do so, we start our loop at the last element, which will be the size of the array minus 1. We then count backwards until we reach 0, which is the first element.
 
 ```cpp
 const int arrSIZE=5;
@@ -224,7 +224,7 @@ Note: the '\\t' prints out a horizontal tab.
 
 ### 6.5.1 Declaring and Initializing 2D Arrays
 
-As we have seen, arrays can hold any data type. Arrays can even hold other arrays. This is the idea behind the somewhat strange syntax of 2 dimensional arrays in C++. Let's say we want to create a 3 x 3 array that contains the numbers 1-9 in order. First, we will create arrays for each row:
+As we have seen, arrays can hold any data type. Arrays can even hold other arrays. This is the idea behind the somewhat strange syntax of 2-dimensional arrays in C++. Let's say we want to create a 3 x 3 array that contains the numbers 1-9 in order. First, we will create arrays for each row:
 
 ```text
 row1 = [ 1, 2, 3]
@@ -246,7 +246,7 @@ Note that we have to specify the dimension of our array, in this case a 3 x 3. T
 int ar[3][3] = {{1, 2, 3}, {4, 5, 6},{7, 8, 9} };
 ```
 
-but most use the first version, as it gives a better idea what you are creating.
+but most use the first version, as it gives a better idea of what you are creating.
 
 Unlike Python, we cannot have jagged arrays. Each row in our 2D array must have the same number of elements.
 
@@ -254,7 +254,7 @@ Unlike Python, we cannot have jagged arrays. Each row in our 2D array must have 
 
 We access items in our 2D array by specifying the row, then column that we want, each enclosed in their own square brackets. As with all arrays, we start counting with 0. So, to access the 1 in the ar array defined above, we would type ar\[0\]\[0\].
 
-So, for this array, the valid values for both Row and Column are 0, 1 and 2. As always with arrays in C++, if we try to access a number larger than this, we don't get an error. C++ will just return whatever is randomly located in the memory of the address that we specify. Therefore, just as before, we need to keep track to the size. In this case, it is common practice to track constant integers for both Row and Columns.  Here we redo our array from above using constants
+So, for this array, the valid values for both Row and Column are 0, 1 and 2. As always with arrays in C++, if we try to access a number larger than this, we don't get an error. C++ will just return whatever is randomly located in the memory of the address that we specify. Therefore, just as before, we need to keep track of the size. In this case, it is common practice to track constant integers for both Row and Columns. Here we redo our array from above using constants:
 
 ```cpp
 int ROWS = 3;
@@ -269,7 +269,7 @@ It is important to keep in mind that **ar** is a 2D array. **ar\[0\]** is incorr
 
 ### 6.5.3 Nested Loops for Traversing 2D Arrays
 
-In order to traverse a 2D array , we are going to need nesting **for** loops. The outer **for** loop will iterate through each **row**, while the inner for loop will go through each item in that row. For an example, let's create a new array that is 3 x 4 and then print out each item.
+In order to traverse a 2D array, we are going to need nested **for** loops. The outer **for** loop will iterate through each **row**, while the inner for loop will go through each item in that row. For an example, let's create a new array that is 3 x 4 and then print out each item.
 
 ```cpp
 int ROWS = 3;
@@ -306,15 +306,15 @@ for(int r = 0; r < ROWS; r++)
 
 Note that this prints the entire first row before moving to the second. So the inner loop iterates 3 times for every 1 time of the outer loop.
 
-We don't always want to initialize the array upfront. Here is an example where we ask the user to enter values in a 2 x 3 array of doubles. We start by declaring the array, but not adding any values:
+We don't always want to initialize the array up front. Here is an example where we ask the user to enter values in a 2 x 3 array of doubles. We start by declaring the array, but not adding any values:
 
 ```cpp
 int ROWS = 2;
 int COLS = 3;
-int temps[ROWS][COLS];
+int temps[ROWS][COLS] = {0};
 ```
 
-Note that on most systems, this will set all of the default values to 0, but don't rely on that. If it is important that all the values are 0, take the time to initialize them to 0.
+The ={0} will set all values of the array to 0.
 
 Now we can go through and ask the user to enter each of the 6 values.
 
@@ -346,11 +346,11 @@ In this print, there will be a space between the values in each row, and a new l
 
 ## 6.6 Passing Arrays to Functions
 
-### 6.7.1 Passing an array by reference
+### 6.6.1 Passing an Array to a Function
 
-Arrays can be very large, which means they could take up a lot of memory. If we were to pass an array by value to a function, it would mean creating another copy of this large memory construct. Therefore, the designers of C++ have decided that all arrays sent to function must be passed by reference.
+Arrays can be very large, so copying one every time we call a function would be wasteful. C++ avoids this. The array name is really the memory address of the first element, so when we pass the array, only that address is copied. The function then works on the original elements, which has the same effect as passing by reference, meaning that changes made in the function remain in the calling function. No & is needed.
 
-Unlike passing a single variable by reference, we don't need to add the ampersand. The reason is that an array is really a memory address. So we already have the memory address we need.  We can test this by printing out the array name without any indices:
+We can test this by printing the array name without any indices:
 
 ```cpp
 const int SIZE=3;
@@ -377,9 +377,9 @@ cout << endl;
 }
 ```
 
-### 6.7.2 Changing an Array in a Function
+### 6.6.2 Changing an Array in a Function
 
-Since arrays are passed by reference to function in C++, we are free to make modifications to the items in the array. Here is an example of a function that doubles each element in the array sent in as a parameter:
+Since arrays are passed by reference (at least they act this way) to functions in C++, we are free to make modifications to the items in the array. Here is an example of a function that doubles each element in the array sent in as a parameter:
 
 ```cpp
 void doubleArray(int arr[], int size)
@@ -392,7 +392,7 @@ void doubleArray(int arr[], int size)
 }
 ```
 
-### 6.7.3 Using const to Prevent Modifications
+### 6.6.3 Using const to Prevent Modifications
 
 We may not want to allow changes to our array. To avoid this, we have to add the const keyword to any parameter we don't want to change. Here is the printArray function with this modification:
 
@@ -440,7 +440,7 @@ int largestElement(const int arr[], int size)
 
 Knowing the sum or average of an array of numbers is often needed in programs. We will create the sumArray function below. The average function can be created by the reader without too much further effort.
 
-Again the array will be passed in as a constant to prevent unwanted changes. We will return the sum. This program assumes the array is of doubles.
+Again, the array will be passed in as a constant to prevent unwanted changes. We will return the sum. This program assumes the array is of doubles.
 
 ```cpp
 double sumArray(const double arr[], int size)
@@ -456,9 +456,9 @@ double sumArray(const double arr[], int size)
 
 ### 6.7.3 Searching for an Element
 
-Our last example will be a function that searches through an array to see if an element is located there. As before, we will be dealing with a 1 dimensional array, though it could be easily extended to multiple dimensions. We have options here, we could make a function that returns the index of the first instance of the search term. If the item is not found, we usually return a value such as -99. Or, as we will do here, we could make a Boolean function that returns true if the item is found and false otherwise.
+Our last example will be a function that searches through an array to see if an element is located there. As before, we will be dealing with a 1-dimensional array, though it could be easily extended to multiple dimensions. We have options here: we could make a function that returns the index of the first instance of the search term. If the item is not found, we usually return a value such as -99. Or, as we will do here, we could make a Boolean function that returns true if the item is found and false otherwise.
 
-We will again use a single dimension array for the example. Traditionally the variable k is used for search terms, and we will follow that practice.
+We will again use a single-dimension array for the example. Traditionally the variable k is used for search terms, and we will follow that practice.
 
 ```cpp
 bool search(int k, const int arr[], int size)

@@ -22,7 +22,7 @@ int main()
     cin >> y;
     cout << x << '\t' << y << endl;
     // '\t' prints out a tab character
-    return 0
+    return 0;
 }
 ```
 
@@ -38,7 +38,7 @@ Here is an algorithm to print out which of the two numbers is larger.
 3. `if y > x then`  
    &emsp;a\. `print "y is larger"`
 
-in this algorithm, either 2a or 3a will execute, but not both.
+In this algorithm, either 2a or 3a will execute, but not both.
 
 It is worth asking if either 2a or 3a will ALWAYS execute. In other words, have we covered all the possibilities? Turns out we have not. The numbers could be equal. We need to account for this possibility as well.
 
@@ -46,7 +46,7 @@ We could also represent this algorithm as a flowchart (see Appendix D for more i
 
 ![Flowchart: Start, Enter x, Enter y, then the decision "x > y?". One branch leads to "x is bigger" and the other to "y is bigger". Both branches lead to End.](images/ch03-flowchart-compare-x-y.png)
 
-### 3.1.2 Logical Operators
+### 3.1.2 Relational and Logical Operators
 
 In order to make comparisons between values, we need to define some relational operators.
 
@@ -57,7 +57,7 @@ In order to make comparisons between values, we need to define some relational o
 | > | Greater than | Returns true if the first value is larger than the second |
 | < | Less than | Returns true if the first value is smaller than the second |
 | >= | Greater than or equal to | Returns true if either the first value is larger or the two values are the same |
-| <= | Less than or equal to | Returns true if either the first value is larger or the two values are the same |
+| <= | Less than or equal to | Returns true if either the first value is smaller or the two values are the same |
 
 In order to create compound relational statements, we also need some logical operators to allow us to string together more than one comparison. There are three logical operators:
 
@@ -116,7 +116,7 @@ int main()
     {
         cout << "The numbers are equal" << endl;
     }
-    return 0
+    return 0;
 }
 ```
 
@@ -150,7 +150,7 @@ int main()
     {
         cout << "Both numbers are negative" << endl;
     }
-    return 0
+    return 0;
 }
 ```
 
@@ -233,7 +233,7 @@ In this case, both the if and the else if conditions are true. However, only the
 
 Nested if-else statements
 
-It can be useful to imbed or nest one if-else inside of another. This gives more flexibility in the conditions you can test for. Here is the basic syntax:
+It can be useful to embed or nest one if-else inside of another. This gives more flexibility in the conditions you can test for. Here is the basic syntax:
 
 ```cpp
 if (condition1)
@@ -288,15 +288,17 @@ It is important to note that the inner if-else structure (in bold) is complete. 
 
 Pitfalls to avoid:
 
-- Off by one error - make sure that you are including all valid values in one of your conditions.
+- Using = instead of == in a comparison. The = in a comparison always returns true.
+- Comparing doubles with ==. C++ can’t store decimals very accurately, so there can be rounding errors. Instead check to see if the difference between two doubles is very small.
+- Off-by-one error - make sure that you are including all valid values in one of your conditions.
 
-| Off by One Verson | Correct Version |
+| Off-by-One Version | Correct Version |
 | --- | --- |
-| `if (x < 100)`<br>`// do something`<br>`else (x > 100)`<br>`// do something else`<br>`This excludes 100.` | `if (x <= 100)`<br>`// do something`<br>`else (x > 100)`<br>`// do something else`<br>`100 is in if block.` |
+| `if (x < 100)`<br>`// do something`<br>`else if(x > 100)`<br>`// do something else`<br>`This excludes 100.` | `if (x <= 100)`<br>`// do something`<br>`else if(x > 100)`<br>`// do something else`<br>`100 is in if block.` |
 
 - Logical operator contradictions - connected relational operators that can never be true
-    - if (x  < 0 && x > 100)   // no number is both less than zero and greater than 100.
-- WIth nested loops, make sure that each else is part of the correct if. Remember, spacing in C++ does not matter. It is the placement of curly braces that determines control structure boundaries.
+    - `if (x < 0 && x > 100)`   // no number is both less than zero and greater than 100.
+- With nested statements, make sure that each else is part of the correct if. Remember, spacing in C++ does not matter. It is the placement of curly braces that determines control structure boundaries.
 
 ### 3.2.3 The Switch Statement
 
@@ -349,7 +351,7 @@ We could have done the same thing with an if-else. For discrete values, though, 
 
 Just as in if-else structures, only one case will be selected. Even if more than one case is true, only the first one to be true will be executed.
 
-Using the **break** is essential. In the above menu example, if we did not include breaks, if the user entered one, all three messages would print out. In some programs, this can be used to our advantage, but is generally not what we want.
+Using the **break** is essential. In the above menu example, if we did not include breaks, if the user entered one, all three messages would print out. In some programs, this can be used to our advantage but is generally not what we want.
 
 Here is an example of code that exploits this behavior:
 
@@ -385,7 +387,7 @@ int main()
     }
 ```
 
-If the user enters 4, for example, the program will print “Thursday”, then fall through to the next case to print “Friday”, then fall through again to print “Saturday” and then “Sunday”.
+If the user enters 4, for example, the program will print “Thursday,” then fall through to the next case to print “Friday”, then fall through again to print “Saturday” and then “Sunday”.
 
 ## 3.3 Debugging Control Structures
 
@@ -415,7 +417,7 @@ Example: Unclear spacing
 if(x>100){if(y>100){cout<<"Both greater than 100";}}
 ```
 
-The unclear spacing still works, but is much harder to see what is going on.
+The unclear spacing still works, but it is much harder to see what is going on.
 
 ---
 

@@ -5,21 +5,21 @@
 
 ## 4.1 Introduction to Iterative Control Structures
 
-Iterative Control Structures, more commonly known as Loops, are used to repeat sections of code. It is the ability to repeat code that really gives programs their power.
+Iterative control structures, more commonly known as loops, are used to repeat sections of code. It is the ability to repeat code that really gives programs their power.
 
 ## 4.2 Types of Loops in C++
 
 We have three options for loops in C++:
 
 - **for** loops - also known as counting loops. For loops will execute for a predetermined number of times. For loops are used when you know how many times you want a loop to repeat.
-- **while** loops - a conditional loop, code only executes if a logical condition is true at the beginning of each iteration. There is no guarantee that the code within the loop will ever execute.
+- **while** loops - a conditional loop; code only executes if a logical condition is true at the beginning of each iteration. There is no guarantee that the code within the loop will ever execute.
 - **do-while** loops - another conditional loop that tests a condition at the end of the loop. A do-while loop is guaranteed to execute at least once.
 
 Both types of conditional loop have the possibility of developing **infinite loops**, where there is no way for the condition the loop is based on to become false.
 
 ## 4.3 The for Loop
 
-A for loop uses a counter to move through the loop. The for statement need to include where the counter starts and stops and how it is incremented or decremented each trip through the loop.
+A for loop uses a counter to move through the loop. The for statement needs to include where the counter starts and stops and how it is incremented or decremented each trip through the loop.
 
 **Syntax**
 
@@ -36,7 +36,7 @@ for (counter initialization; condition to continue; increment/decrement counter)
 
 Initialization of counter
 
-In this first part of the for statement, we have to set an initial value for an int variable that will serve as our counter. This could be an already existing variable, but it is more common to declare the variable in the for statement. When declared within the for loop, the counter is only in score (able to be used) while the in the loop. This reduces the chance that a counter from some other loop could affect the current look. Everytime you execute the loop, you get a new counter. The following example will create a int variable c and give it the value 0.
+In this first part of the for statement, we have to set an initial value for an int variable that will serve as our counter. This could be an already existing variable, but it is more common to declare the variable in the for statement. When declared within the for loop, the counter is only in scope (able to be used) while in the loop. This reduces the chance that a counter from some other loop could affect the current loop. Every time you execute the loop, you get a new counter. The following example will create an int variable c and give it the value 0.
 
 ```cpp
 for(int c = 0;
@@ -58,7 +58,7 @@ The last part of the for statement either increases or decreases the counter. We
 for(int c=0; c <100; c++)
 ```
 
-Code within the above for loop will execute 100 times, with x taking on values from 0 to 1 to 2 to ... 99.
+Code within the above for loop will execute 100 times, with c taking on values from 0 to 1 to 2 to ... 99.
 
 Example - Counting from 1 to 5.
 
@@ -99,9 +99,9 @@ while (condition is true)
 
 ![Flowchart of a while loop: flow enters the decision "Condition true?". If yes: "Code in loop", then "Update Condition", which returns to the decision. If no: flow continues to the rest of the code.](images/ch04-while-loop-flowchart.png)
 
-While loops are used when you don’t know how many times the loop needs to execute. It could be that it never executes. It all depends on the condition. This condition is often called a **Sentinel** condition, as it guards the loop.
+While loops are used when you don’t know how many times the loop needs to execute. It could be that it never executes. It all depends on the condition.
 
-Example, taking numbers from a user until they enter a 0, then calculating a sum. Note that unlike with a for loop, we need to set up the variables for the condition before we get to the loop.
+Example: taking numbers from a user until they enter a 0, then calculating a sum. Note that unlike with a for loop, we need to set up the variables for the condition before we get to the loop.
 
 ```cpp
 int n = 10;
@@ -131,7 +131,7 @@ while(n != 0)
  }
 ```
 
-It is common to use flags with conditional loops. Flags are Boolean variables that answer yes/no questions. In the Example below, we use a Boolean variable called cont to see if the user wants to loop again.
+It is common to use flags with conditional loops. Flags are Boolean variables that answer yes/no questions. In the example below, we use a Boolean variable called cont to see if the user wants to loop again.
 
 ```cpp
 bool cont = true;
@@ -140,8 +140,8 @@ while(cont)
 {
     // do something
     cout << "Do you want to continue (Y/N)?: ";
-    cin >> c;
-    if (c == 'y' || c == 'Y')
+    cin >> choice;
+    if (choice == 'y' || choice == 'Y')
     {
         cont = true;
     } else {
@@ -166,11 +166,11 @@ Like **while**, the **do-while** loop is a conditional loop. The only difference
 
 As in the while loop, infinite loops are possible if there is no way to reach the terminal condition.
 
-In practice, I rarely use **do-while** loops. There is one case where they come in handy, and that is for validating user input. Recall in Chapter 2, we allowed the user to use **cin** to input integers, but we did not check to make sure they actually entered one correctly.  We can fix that with a **do-while** loop. We will also use the following attributes of **cin**:
+In practice, I rarely use **do-while** loops. There is one case where they come in handy, and that is for validating user input. Recall that in Chapter 2, we allowed the user to use **cin** to input integers, but we did not check to make sure they actually entered one correctly. We can fix that with a **do-while** loop. We will also use the following attributes of **cin**:
 
 - **cin.fail()** - will return true if the user entered an incorrect value
-- **cin.clear()** - clear the error message
-- **cin.ignore(1000, ‘\\n’)** - ignore the invalid input in the cin buffer
+- **cin.clear()** – resets the stream’s error flags
+- **cin.ignore(1000, '\\n')** - ignore the invalid input in the cin buffer
 
 Here is an example:
 
@@ -208,7 +208,7 @@ You should always verify user input.
 
 There are two commands that we can use to alter the normal flow of a loop.
 
-**break** - causes immediate termination of the loop. Here is an example program where the user enters as many positive ints as wanted. A negative number halts entry of numbers.
+**break** - causes immediate termination of the innermost loop. Here is an example program where the user enters as many positive ints as wanted. A negative number halts entry of numbers.
 
 ```cpp
 int n = 0;
@@ -228,7 +228,7 @@ Note the use of **while(true)**. This loop continues until a break is encountere
 
 **continue -** skip the rest of the loop for the current iteration.
 
-We can use this to ignore certain values. Here is an example program that asks the users to enter positive ints to be added together. Any negative values should be ignored. Entering a -99 will terminate the loop.
+We can use this to ignore certain values. Here is an example program that asks the user to enter positive ints to be added together. Any negative values should be ignored. Entering a -99 will terminate the loop.
 
 ```cpp
 #include <iostream>
@@ -286,7 +286,7 @@ int main()
 
 Note that for each value of x, all values of y are processed before moving to the next x.
 
-The next example uses a **while loop** to ask the user if they want to repeat, then a **for loop** to determine the factors from 1 to 10. There is a tab between numbers and a new line at the end. Note, for space considerations I am not testing user input.
+The next example uses a **while loop** to ask the user if they want to repeat, then a **for loop** to determine the factors from 1 to 10. There is a tab between numbers and a new line at the end. Note: for space considerations, I am not testing user input.
 
 ```cpp
 // declare variables
@@ -321,8 +321,28 @@ You can nest **for**, **while**, and **do-while** loops in any order. You can al
 ## 4.8 Common Pitfalls and Debugging Tips
 
 - Infinite loops: occur when there is no way to reach a terminal condition in a loop.
+
+```cpp
+int count = 1;
+while (count <= 5)
+{
+    cout << count << endl;
+    // missing count++, so count stays 1 and the condition is always true
+}
+```
+
 - Off-by-one errors in iteration.
-- Debugging techniques for loops: test loops with simple print statements before adding more complex code. If the loops are wrong, the program cannot be correct..
+
+```cpp
+int scores[5] = {90, 85, 70, 95, 80};
+int sum = 0;
+for (int i = 0; i <= 5; i++) // off by one: should be i < 5
+{
+    sum += scores[i];
+}
+```
+
+- Debugging techniques for loops: test loops with simple print statements before adding more complex code. If the loops are wrong, the program cannot be correct.
 
 ---
 

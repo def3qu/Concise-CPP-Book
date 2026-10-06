@@ -134,6 +134,7 @@
     padding: 0;
     border-top: 1px solid var(--line);
   }
+  h2 + ul.toc { margin-bottom: 2.5rem; }
   ul.toc li { border-bottom: 1px solid var(--line); }
   ul.toc a {
     display: flex;
@@ -276,6 +277,11 @@
 </header>
 
 <main>
+  <h2>Front Matter</h2>
+  <ul class="toc">
+    <li><a href="acknowledgments.md"><span class="num">i</span><span class="title">Acknowledgments</span></a></li>
+  </ul>
+
   <h2>Chapters</h2>
   <ul class="toc">
     <li><a href="01-introduction-to-cpp.md"><span class="num">1</span><span class="title">Introduction to C++</span></a></li>
@@ -288,12 +294,23 @@
     <li><a href="08-structs-and-classes.md"><span class="num">8</span><span class="title">Structs and Classes</span></a></li>
     <li><a href="09-inheritance.md"><span class="num">9</span><span class="title">Inheritance</span></a></li>
     <li><a href="10-pointers.md"><span class="num">10</span><span class="title">Pointers</span></a></li>
+    <li><a href="11-using-files.md"><span class="num">11</span><span class="title">Using Files</span></a></li>
+    <li><a href="12-exception-handling.md"><span class="num">12</span><span class="title">Exception Handling</span></a></li>
 
     <!-- TO ADD A CHAPTER: copy the example line below, paste it ABOVE this comment
          (after the last chapter), and edit the file name, number and title.
 
-    <li><a href="11-using-files.md"><span class="num">11</span><span class="title">Using Files</span></a></li>
+    <li><a href="13-your-chapter.md"><span class="num">13</span><span class="title">Chapter Title</span></a></li>
     -->
+  </ul>
+
+  <h2>Appendices</h2>
+  <ul class="toc">
+    <li><a href="appendix-a-connecting-to-the-server.md"><span class="num">A</span><span class="title">Connecting to the Server</span></a></li>
+    <li><a href="appendix-b-useful-linux-commands.md"><span class="num">B</span><span class="title">Useful Linux Commands</span></a></li>
+    <li><a href="appendix-c-useful-emacs-commands.md"><span class="num">C</span><span class="title">Useful Emacs Commands</span></a></li>
+    <li><a href="appendix-d-flowcharts.md"><span class="num">D</span><span class="title">Flowcharts</span></a></li>
+    <li><a href="appendix-e-ascii-table.md"><span class="num">E</span><span class="title">ASCII Table</span></a></li>
   </ul>
 
   <footer>

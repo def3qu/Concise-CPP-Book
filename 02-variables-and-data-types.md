@@ -5,7 +5,7 @@
 
 ## 2.1 Variables
 
-As in Python, variables in C++ are not the same as variables in mathematics. In Math, a variable is an unknown. In C++, a variable is named location in memory that can be used to store data. When you use a variable name, C++ knows to look in the memory address pointed to by the name. Unlike in Python, variables in C++ have to be declared and be of a consistent type.
+As in Python, variables in C++ are not the same as variables in mathematics. In math, a variable is an unknown. In C++, a variable is a named location in memory that can be used to store data. When you use a variable name, C++ knows to look in the memory address pointed to by the name. Unlike in Python, variables in C++ have to be declared and be of a consistent type.
 
 In Python, the following is legal:
 
@@ -14,7 +14,7 @@ x = 24
 x = "Bob"
 ```
 
-In C++, once x is initialized as an int, it must remain an int.:
+In C++, once x is initialized as an int, it must remain an int:
 
 ```cpp
 int x = 5;
@@ -22,7 +22,7 @@ int x = 5;
 
 `x = "Bob";` would give an **invalid conversion** error.
 
-The operation system allocated a chunk of memory to each running program. When we initialize a variable in C++, the OS will reserve an area of memory to hold data. The size of this area will depend on the type of variable declared, and to some degree on the operating system you are using. On ludwig, any variable declared as an **int** (integer) will take up 4 bytes (32 bits). The range of integers is thus -2,147,483,648 to 2,147,483,647.
+The operating system allocates a chunk of memory to each running program. When we initialize a variable in C++, the OS will reserve an area of memory to hold data. The size of this area will depend on the type of variable declared, and to some degree on the operating system you are using. On ludwig, any variable declared as an **int** (integer) will take up 4 bytes (32 bits). The range of integers is thus -2,147,483,648 to 2,147,483,647.
 
 We declare an int with the following command:
 
@@ -30,7 +30,7 @@ We declare an int with the following command:
 int x = 5;
 ```
 
-This command creates a 4 byte area in the program's memory, assigns the name x to that location, and places the number 5 in that area. Let’s say the memory address happens to be 0x1000. When we execute a line such as:
+This command creates a 4-byte area in the program's memory, assigns the name x to that location, and places the number 5 in that area. Let’s say the memory address happens to be 0x1000. When we execute a line such as:
 
 ```cpp
 cout <<  x  << endl;
@@ -38,23 +38,23 @@ cout <<  x  << endl;
 
 the program goes to location 0x1000 in memory, sees that there is a 5 stored there, prints 5 to the screen, and then goes to the next line.
 
-It is possible to initialize a variable without giving it a value, but one should use caution when doing this. In general, a variable that is initialized but not given a value will default to some value such as zero. This is dependent on the compiler being used. It is always best practice to give variables a default value when you initialize them unless they are going to be assigned a value immediately in the code.
+It is possible to declare a variable without giving it a value, but do not use it until you have assigned one. A local variable that is declared but not given a value holds whatever happened to be in that memory before, and reading it is a bug. On some systems, the leftover value happens to be zero, which makes the bug easy to miss. Do not rely on it. Give every variable a starting value when you declare it, such as `int x = 0`.
 
 ## 2.2 Data Types
 
 | Type | Min | Max | Example |
 | --- | --- | --- | --- |
 | int | -2,147,483,648 | 2,147,483,647 | int miles=245; |
-| float | -3.40282 x 10<sup>38</sup> | 3.40282 x 10<sup>38</sup> | float pi = 3.14 |
-| double | -1.79769 x 10<sup>308</sup> | 1.79769 x 10<sup>308</sup> | double r = 23.456 |
-| char | -128 | 127 | char c = ‘A’ |
-| bool | false (0) | true (1) | bool isReady = true |
+| float | -3.40282 x 10<sup>38</sup> | 3.40282 x 10<sup>38</sup> | float pi = 3.14; |
+| double | -1.79769 x 10<sup>308</sup> | 1.79769 x 10<sup>308</sup> | double r = 23.456; |
+| char | -128 | 127 | char c = 'A'; |
+| bool | false (0) | true (1) | bool isReady = true; |
 
 Notes on data types:
 
-If you move past the range of **int**, you will wrap around to the smallest number.
+If you move past the range of **int**, you will wrap around to the smallest number. Note that this is technically undefined behavior, but it is what actually happens.
 
-If **doubles** or **floats** exceed their limits, they return a positive or negative infinity
+If **doubles** or **floats** exceed their limits, they return a positive or negative infinity.
 
 If **doubles** or **floats** get too small, they change to 0.
 
@@ -74,11 +74,11 @@ string name = "Bob";
 
 ## 2.3 Typecasting
 
-C++ gives you the ability, with restrictions, to convert a variable from one data type to another.  This is called **typecasting**, of which there are two types.
+C++ gives you the ability, with restrictions, to convert a variable from one data type to another. This is called **typecasting**, of which there are two types.
 
 ### 2.3.1 Implicit Typecasting
 
-Also called **type promotion**, this happens when the compiler automatically converts the type of a variable when there is no risk of data loss. This occurs most frequently when doing arithmetic operations with ints and floats.
+Also called **type promotion**, this happens when the compiler automatically converts the type of a variable. If the conversion broadens the variable (i.e. int to double) there is no risk of data loss. It is a more concerning case if the typecasting narrows the variable (i.e. double to int). This occurs most frequently when doing arithmetic operations with ints and floats.
 
 Example 1
 
@@ -98,7 +98,7 @@ float prod = x * y;        // automatic type conversion of the int 5 to
 
 ### 2.3.2 Explicit Typecasting
 
-This occurs when the programmer specifies the conversion in code. C++ offers a couple of options on how to do explicit typecasting. The most common is a static\_cast which allows for conversions between compatible types such as ints and floats.
+This occurs when the programmer specifies the conversion in code. C++ offers a couple of options on how to do explicit typecasting. The most common is a static\_cast, which allows for conversions between compatible types such as ints and floats.
 
 Example
 
@@ -117,7 +117,7 @@ You declare a constant with the `const` keyword before a variable declaration. Y
 const int MAX_STUDENTS = 50;
 ```
 
-You use constants to ensure that a value of a variable is not changed during the execution of a program. Constants are often used to avoid “magic numbers”, which are numeric literals that are placed in code with no explanation.
+You use constants to ensure that a value of a variable is not changed during the execution of a program. Constants are often used to avoid “magic numbers,” which are numeric literals that are placed in code with no explanation.
 
 Example:
 
@@ -134,11 +134,11 @@ const double interestRate = .25;
 pv = futureValue / pow(1 + interestRate, periods);
 ```
 
-Another advantage to using constants instead of literals. Let’s say the interest rate of .25 is used dozens of times in your code as numeric literals. One day, the interest rate changes to .35. Now you have to go through and find each instance of the interest rate and change it one by one. If instead you had declared a const double at the beginning of your code, and used that constant in all calculations, then you only need to change the line where *interestRate* is declared.
+Another advantage to using constants instead of literals is easier maintenance. Let’s say the interest rate of .25 is used dozens of times in your code as numeric literals. One day, the interest rate changes to .35. Now you have to go through and find each instance of the interest rate and change it one by one. If instead you had declared a const double at the beginning of your code, and used that constant in all calculations, then you only need to change the line where *interestRate* is declared.
 
 ## 2.5 Input (from keyboard) and Output (to Screen)
 
-Input and output in C++ is based on the idea of streams. The streams model data flow from a source to a destination. We have already seen an example of output to the screen. Let’s look at that in more detail.
+Input and output in C++ are based on the idea of streams. The streams model data flow from a source to a destination. We have already seen an example of output to the screen. Let’s look at that in more detail.
 
 Output Stream
 
@@ -149,7 +149,7 @@ string name = "Bob";
 cout << "Hello " << name << endl;
 ```
 
-First, “Hello“ is added to the stream. Then the “Bob”, which is the value of name. Then a ‘\\n’ which is what *endl* evaluates to. This creates a new line.
+First, “Hello” is added to the stream. Then the “Bob”, which is the value of name. Then an endl which flushes the output buffer and creates a new line.
 
 If we reverse the stream operators from << to >>, we get hundreds of lines of errors.
 
@@ -165,7 +165,7 @@ cout << "Enter your age ==> ";
 cin >> age;
 ```
 
-This combination of **cout** then **cin** allows for us to ask for the age, and then capture what the user types to the variable age. Note that we are not doing any error checking here. If the user enters an invalid response, unpredictable results may occur. We will learn to check for these kinds of issues later.
+This combination of **cout** then **cin** allows us to ask for the age, and then capture what the user types to the variable age. Note that we are not doing any error checking here. If the user enters an invalid response, unpredictable results may occur. We will learn to check for these kinds of issues later.
 
 We can also get a series of values from the user.
 
@@ -204,28 +204,28 @@ int x = 9;
 float y = 2.5;
 cout << x + y << endl;
 
-// result will be 22.5. x will be implicitly typecast to 9.0
+// result will be 11.5. x will be implicitly typecast to 9.0
 ```
 
 ### 2.6.2 Differences from Python
 
-Since C++ is a typed language and Python is not, there are some differences in how arithmetic is handled. The biggest issue is overflow. In Python, a variable can grow as large as the memory allows. In C++, if you go past the maximum value for the type, you will wrap around to the minimum value and get incorrect results.
+Since C++ is a statically typed language and Python is dynamically typed, there are some differences in how arithmetic is handled. The biggest issue is overflow. In Python, a variable can grow as large as the memory allows. In C++, if you go past the maximum value for the type, you will wrap around to the minimum value and get incorrect results.
 
-If we were to create a program that implements the Factorial operation on ints in C++, we could only calculate up through 20! successfully. When we try with any number bigger than 20, we get incorrect results. The same program in Python would successfully calculate factorials in excess of 500 with no issues.
+If we were to create a program that implements the factorial operation on ints in C++, we could only calculate up through 12! successfully. When we try with any number bigger than 12, we get incorrect results. The same program in Python would successfully calculate factorials in excess of 500 with no issues.
 
 ### 2.6.3 Order of Operations
 
 The order of operations lets us know the order that arithmetic operations will be performed when there are multiple operations in a single expression. C++ follows Python, and indeed most programming languages in implementing the mnemonic device PEMDAS. When interpreting this, we need to realize that some of these are on the exact same level. Let’s go through the letters.
 
-P - Parenthesis - These have the highest priority and are always done first.
+P - Parentheses - These have the highest priority and are always done first.
 
-E - Exponents - Exponents are done next.
+E - Exponents - Exponents are done next. (using pow(), introduced in Chapter 5)
 
 MD - Multiplication and Division - these are at the same level.
 
 AS - Addition and Subtraction - also at the same level.
 
-If there are more than one operation at the same level of priority, they are done from left to right.
+If there is more than one operation at the same level of priority, they are done from left to right.
 
 You often see folks arguing online about what the “real” answer is when doing multiple things in one line. One such program that causes arguments is the following:
 
@@ -237,13 +237,13 @@ Start by converting this into C++ form:
 6 / 2 * (1 + 2)
 ```
 
-The highest priority is the parenthesis, so we do 1 + 2 first. This gives us:
+The highest priority is the parentheses, so we do 1 + 2 first. This gives us:
 
 ```text
 6 / 2 * 3
 ```
 
-This is where the arguments start. Do we do the multiplication on the division first? The correct answer is that since they are at the same level of priority, we do the division then the multiplication (left to right). This gives us:
+This is where the arguments start. Do we do the multiplication or the division first? The correct answer is that since they are at the same level of priority, we do the division then the multiplication (left to right). This gives us:
 
 ```text
 3 * 3
@@ -283,7 +283,7 @@ If you have a formula in mathematical format, you will have to make some changes
 
 Formula in mathematics notation:
 
-We start our conversion by putting some parenthesis for the numerator and denominator with the division sign in between.
+We start our conversion by putting some parentheses for the numerator and denominator with the division sign in between.
 
 ```text
 (numerator) / (denominator)
